@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaeleth</title>
+    <link rel="stylesheet" href="styles.css">    
+</head>
+
+<!-- Registration Form -->
+<div id="registrationForm">
+    <h2>Register</h2>
+    <input type="text" id="registerEmail" placeholder="Email">
+    <input type="password" id="registerPassword" placeholder="Password">
+    <button id="registerBtn">Register</button>
+</div>
+
+<!-- Login Form -->
+<div id="loginForm">
+    <h2>Login</h2>
+    <input type="text" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button id="loginBtn">Login</button>
+</div>    
+    
+<body>
+    <div class="tab-container">
+        <button class="tab" id="deityCreationTab" onclick="openTab('deityCreator')">Deity Creator</button>
+        <button class="tab" id="raceCreatorTab" onclick="openTab('raceCreator')">Race Creator</button>
+        <button class="tab" id="weeklyActionsTab" onclick="openTab('weeklyActions')">Weekly Actions</button>
+        <button id="logoutBtn" style="display: none;">Logout</button>
+
+    </div>
+
+    <div id="deityCreator" class="tab-content">
+        <div class="container">
+            <h1>Choose your domain</h1>
+            <form id="domainCreationForm">
+                <label for="playerName">Player Name:</label>
+                <input type="text" id="playerName" required>
+
+                <label for="deityName">Deity Name:</label>
+                <input type="text" id="deityName" required>
+
+                <label for="domainDropdown">Select Domain:</label>
+                <select id="domainDropdown">
+                    <option value="Death">Death</option>
+                    <option value="Water">Water</option>
+                    <option value="Fire">Fire</option>
+                    <option value="War">War</option>
+                    <option value="Sun">Sun</option>
+                    <option value="Love">Love</option>
+                    <option value="Moon">Moon</option>
+                    <option value="Nature">Nature</option>
+                    <option value="Harvest">Harvest</option>
+                    <option value="Storm">Storm</option>
+                    <option value="Knowledge">Knowledge</option>
+                    <option value="Fertility">Fertility</option>
+                    <option value="Luck">Luck</option>
+                    <option value="Music">Music</option>
+                    <option value="Justice">Justice</option>
+                    <option value="Healing">Healing</option>
+                    <option value="Dreams">Dreams</option>
+                    <option value="Chaos">Chaos</option>
+                    <option value="Forge">Forge</option>
+                    <option value="Magic">Magic</option>
+                    <option value="Travel">Travel</option>
+                </select>
+                <input type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+
+    <div id="raceCreator" class="tab-content">
+        <div class="container">
+            <h1>Create Your Fantasy Race</h1>
+            <p>You have <span id="points">100</span> points remaining</p>
+            <form id="raceCreationForm">
+                <div>
+                    <label for="raceName">Race Name:</label>
+                    <input type="text" id="raceName" placeholder="Enter race name" required>
+                </div>
+                <div class="characteristics">
+                    <h3>Select Characteristics</h3>
+                    <select id="characteristicDropdown">
+                        <option value="" data-cost="0" data-description="Select a characteristic to see its description.">--Select Characteristic--</option>
+                        <option value="Sturdy" data-cost="20" data-description="This race is exceptionally resilient, able to withstand more physical harm than average.">Sturdy (+20 points)</option>
+                        <option value="Intelligent" data-cost="25" data-description="Members of this race have superior cognitive abilities, allowing them to solve complex problems easily.">Intelligent (+25 points)</option>
+                        <option value="MagicAffinity" data-cost="30" data-description="This race has a natural connection to the arcane, making them formidable spellcasters.">Magic Affinity (+30 points)</option>
+                        <option value="Swift" data-cost="15" data-description="Unmatched in speed, this race can cover distances in record time or evade threats effectively.">Swift (+15 points)</option>
+                        <option value="Agile" data-cost="15" data-description="With heightened reflexes and balance, this race excels in tasks requiring dexterity.">Agile (+15 points)</option>
+                        <option value="NimbleFingers" data-cost="10" data-description="This race is particularly skilled at tasks requiring finesse, such as crafting or thievery.">Nimble Fingers (+10 points)</option>
+                        <option value="Amphibious" data-cost="20" data-description="Capable of living both on land and water, this race can breathe underwater.">Amphibious (+20 points)</option>
+                        <option value="NightVision" data-cost="15" data-description="The dark is no obstacle to this race, as they can see in low light conditions as if it were daytime.">Night Vision (+15 points)</option>
+                        <option value="Flight" data-cost="35" data-description="This race has the capability to fly, either through wings or other means.">Flight (+35 points)</option>
+                        <option value="InferiorStrength" data-cost="-10" data-description="Physical strength is not a forte for this race, making them less effective in brute force tasks.">Inferior Strength (-10 points)</option>
+                        <option value="BrittleBones" data-cost="-15" data-description="This race is more prone to physical injuries due to their delicate bone structure.">Brittle Bones (-15 points)</option>
+                        <option value="MagicIneptitude" data-cost="-20" data-description="Magic is a challenge for this race, making them less effective or incapable of casting spells.">Magic Ineptitude (-20 points)</option>
+                        <option value="ShortLived" data-cost="-10" data-description="Members of this race have shorter lifespans compared to others.">Short-Lived (-10 points)</option>
+                        <option value="LightSensitive" data-cost="-15" data-description="Bright lights can be harmful or disorienting to this race, especially sunlight.">Light Sensitive (-15 points)</option>
+                        <option value="WaterAllergy" data-cost="-15" data-description="Water, whether it's rain or a splash, can be harmful or weakening to members of this race.">Water Allergy (-15 points)</option>
+                        <option value="Longevity" data-cost="25" data-description="This race has a lifespan much longer than typical beings.">Longevity (+25 points)</option>
+                        <option value="FireResistance" data-cost="20" data-description="Heat and flames barely affect this race, making them immune to most fire-related threats.">Fire Resistance (+20 points)</option>
+                        <option value="ColdResistance" data-cost="20" data-description="Chilly environments are a comfort for this race, making them immune to frost and ice.">Cold Resistance (+20 points)</option>
+                        <option value="NatureBond" data-cost="25" data-description="This race shares a special bond with nature, allowing them to command flora and fauna.">Nature Bond (+25 points)</option>
+                        <option value="Charm" data-cost="20" data-description="Members of this race have a natural charisma, making them beloved and persuasive.">Charm (+20 points)</option>
+                        <option value="Stealthy" data-cost="15" data-description="This race excels in moving unnoticed, making them formidable spies or hunters.">Stealthy (+15 points)</option>
+                        <option value="Telepathy" data-cost="30" data-description="Members of this race can communicate mentally, reading thoughts or sending silent messages.">Telepathy (+30 points)</option>
+                        <option value="Regeneration" data-cost="35" data-description="Injuries heal rapidly for this race, as they can recover from wounds in a fraction of the normal time.">Regeneration (+35 points)</option>
+                        <option value="Fertile" data-cost="15" data-description="This race reproduces at a faster rate, leading to quicker population growth.">Fertile (+15 points)</option>
+                        <option value="StuntedMagic" data-cost="-15" data-description="While not completely inept, magic is weaker when cast by members of this race.">Stunted Magic (-15 points)</option>
+                        <option value="Gullible" data-cost="-10" data-description="Easily deceived, this race tends to believe even the most obvious of lies.">Gullible (-10 points)</option>
+                        <option value="Fragile" data-cost="-20" data-description="Lacking physical robustness, this race is easily harmed by physical threats.">Fragile (-20 points)</option>
+                        <option value="VulnerableToMagic" data-cost="-25" data-description="Magic affects this race more profoundly, making them susceptible to spells.">Vulnerable To Magic (-25 points)</option>
+                        <option value="Territorial" data-cost="-10" data-description="This race is fiercely protective of their domain, often leading to disputes with neighbors.">Territorial (-10 points)</option>
+                    </select>
+                    <div id="characteristicDescription">Select a characteristic to see its description.</div>
+                    <button id="addCharacteristicBtn">Add Characteristic</button>
+                    <h3>Selected Characteristics:</h3>
+                    <ul id="selectedCharacteristicsList"></ul>
+                </div>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="weeklyActions" class="tab-content">
+        <div class="container">
+            <h2>Weekly Actions</h2>
+            <form id="weeklyActionsForm">
+            <div class="resource-summary">
+                <p>Action Points: <span id="actionPoints">10</span></p>
+                <p>Wealth Points: <span id="wealthPoints">20</span></p>
+                <p>Magic Points: <span id="magicPoints">15</span></p>
+                <p>Influence Points: <span id="influencePoints">25</span></p>
+                <p>Command Points: <span id="commandPoints">12</span></p>
+            </div>
+            <select id="actionDropdown">
+                <option value="Exploration" data-cost='{"action":2, "wealth":1}' data-description="Explore new territories and discover resources.">Exploration</option>
+                <option value="BuildStructure" data-cost='{"action":3, "wealth":5}' data-description="Construct a building that can generate resources or provide other benefits.">Build Point Generating Structure</option>
+                <option value="Conscription" data-cost='{"action":1, "wealth":3, "command":1}' data-description="Raise an army from the populace.">Order Conscription</option>
+                <option value="MoveArmy" data-cost='{"action":2, "wealth":2, "command":2}' data-description="Move an army across the map.">Order Army</option>
+                <option value="Spying" data-cost='{"action":2, "influence":2}' data-description="Send spies to gather information or disrupt enemy actions.">Spying</option>
+                <option value="RepairHeal" data-cost='{"action":1, "wealth":4}' data-description="Repair damaged structures or heal wounded units.">Repair/Heal</option>
+                <option value="Sabotage" data-cost='{"action":3, "influence":3, "magic":1}' data-description="Disrupt enemy resources, structures, or armies.">Sabotage</option>
+                <option value="SocialDevelopment" data-cost='{"action":2, "wealth":2, "influence":1}' data-description="Improve the societal structures, leading to more resources or better efficiencies.">Social Development</option>
+                <option value="ResearchTech" data-cost='{"action":3, "magic":2}' data-description="Advance the technological or magical capabilities of your civilization.">Research Tech</option>
+                <option value="Uproar" data-cost='{"action":2, "influence":4}' data-description="Instigate or suppress a revolt in a region.">Uproar</option>
+                <option value="BuildSiege" data-cost='{"action":4, "wealth":5, "command":1}' data-description="Construct siege weapons to break through enemy defenses.">Build Siege Weapon</option>
+                <option value="TradeRoute" data-cost='{"action":2, "wealth":3}' data-description="Establish trade routes with other players or neutral cities for economic gain.">Establish Trade Route</option>
+            </select>
+            <p id="actionDescription">Select an action to see its description.</p>
+            <div class="action-info" id="actionInfo"></div>
+            <button id="addActionBtn">Confirm Action</button>
+            <h3>Selected Actions for the Week</h3>
+            <ul id="selectedActionsList"></ul>
+            <button id="endTurnBtn" type="submit">End Turn</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Place the script tag at the end of the body for better performance -->
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
