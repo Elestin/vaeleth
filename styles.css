@@ -11,6 +11,14 @@ body, html {
     align-items: center;
     flex-direction: column; /* stack the forms vertically */
     gap: 20px; /* creates space between elements */
+    background-color: rgba(255, 255, 255, 0); /* 0.7 is the alpha/opacity value */
+}
+
+html {
+    background-image: url('images/getimg_ai_img-fFz0mcHZeSDLoGVQO2473.png'); /* Replace with your image path */
+    background-size: cover; /* This will cover the entire viewport */
+    background-repeat: no-repeat; /* This will prevent the image from repeating */
+    background-attachment: inherit; /* This will ensure the background stays in place while scrolling */
 }
 
 .container {
@@ -155,6 +163,7 @@ li:last-child {
     border-bottom: 1px solid #ddd;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;  /* ensures the tabs are on top of other content */
+    background-color: rgba(255, 255, 255, 0); /* 0.7 is the alpha/opacity value */
 }
 
 .tab {
