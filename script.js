@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     worldMapTab.style.display = 'none';
     discussionBoardTab.style.display = 'none';
 
-    function checkUserState(user) {
+function checkUserState(user) {
     const deityRef = database.ref('deities/' + user.uid);
     deityRef.once('value').then(snapshot => {
         if (snapshot.exists()) {
@@ -76,22 +76,33 @@ document.addEventListener('DOMContentLoaded', function() {
             const raceRef = database.ref('races/' + user.uid);
             raceRef.once('value').then(raceSnapshot => {
                 if (raceSnapshot.exists()) {
-                    // Race exists, show Weekly Actions
+                    // Race exists, show Weekly Actions and hide others
                     openTab('weeklyActions');
                     weeklyActionsTab.style.display = 'block';
                     timelineTab.style.display = 'block';
                     worldMapTab.style.display = 'block';
                     discussionBoardTab.style.display = 'block';
+                    deityCreationTab.style.display = 'none';
+                    raceCreatorTab.style.display = 'none';
                 } else {
-                    // No race, show Race Creator
+                    // No race, show Race Creator and hide others
                     openTab('raceCreator');
                     raceCreatorTab.style.display = 'block';
+                    weeklyActionsTab.style.display = 'none';
+                    timelineTab.style.display = 'none';
+                    worldMapTab.style.display = 'none';
+                    discussionBoardTab.style.display = 'none';
                 }
             });
         } else {
-            // No deity, show Deity Creator
+            // No deity, show Deity Creator and hide others
             openTab('deityCreator');
             deityCreationTab.style.display = 'block';
+            raceCreatorTab.style.display = 'none';
+            weeklyActionsTab.style.display = 'none';
+            timelineTab.style.display = 'none';
+            worldMapTab.style.display = 'none';
+            discussionBoardTab.style.display = 'none';
         }
     });
 }
@@ -100,10 +111,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Authentication State Change Listener
 auth.onAuthStateChanged((user) => {
     if (user) {
+        // Hide the login and registration forms
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registrationForm').style.display = 'none';
+
+        // Check the user's state (deity and race)
         checkUserState(user);
+
+        // Show logout button
         logoutBtn.style.display = 'block';
     } else {
-        // User is logged out, hide everything
+        // User is logged out, show the login and registration forms
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('registrationForm').style.display = 'block';
+
+        // Hide everything else
         deityCreationTab.style.display = 'none';
         raceCreatorTab.style.display = 'none';
         weeklyActionsTab.style.display = 'none';
@@ -113,6 +135,7 @@ auth.onAuthStateChanged((user) => {
         logoutBtn.style.display = 'none';
     }
 });
+
 
 // Deity Creator Form Submission
 raceCreationForm.addEventListener('submit', (e) => {
@@ -152,7 +175,6 @@ raceCreationForm.addEventListener('submit', (e) => {
         alert("There was an error creating your race. Please try again.");
     });
 });
-
 
 
     // Registration Logic
