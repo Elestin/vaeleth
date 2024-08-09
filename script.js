@@ -115,41 +115,40 @@ auth.onAuthStateChanged((user) => {
 });
 
 // Deity Creator Form Submission
-deityCreationForm.addEventListener('submit', (e) => {
+raceCreationForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const user = auth.currentUser;
-
-    if (user) {
-        const deityRef = database.ref('deities/' + user.uid);
-        deityRef.once('value').then(snapshot => {
-            if (snapshot.exists()) {
-                alert("You have already created a deity. You cannot create another one.");
-            } else {
-                const deityName = document.getElementById('deityName').value.trim();
-                const playerName = document.getElementById('playerName').value.trim();
-                const domainDropdown = document.getElementById('domainDropdown').value;
-
-                deityRef.set({
-                    name: deityName,
-                    playerName: playerName,
-                    domain: domainDropdown
-                }).then(() => {
-                    alert("Deity created successfully!");
-                    deityCreationTab.style.display = 'none';
-                    checkUserState(user); // Check for race after deity creation
-                }).catch((error) => {
-                    console.error("Error creating deity: ", error);
-                    alert("There was an error creating your deity. Please try again.");
-                });
-            }
-        }).catch((error) => {
-            console.error("Error checking deity: ", error);
-            alert("There was an error checking your deity status. Please try again.");
-        });
-    } else {
-        alert("You must be logged in to create a deity.");
+    const raceName = raceNameInput.value.trim();  // Get the value and trim any white spaces
+    if (!raceName) {
+        alert("Please provide a race name!");
+        return;
     }
+    if (selectedCharacteristics.length === 0) {
+        alert("You haven't selected any characteristics!");
+        return;
+    }
+
+    const userID = auth.currentUser.uid;
+    const raceRef = database.ref('races/' + userID);
+    raceRef.set({
+        name: raceName,  // Including the race name in the data being saved
+        characteristics: selectedCharacteristics,
+        pointsLeft: remainingPoints
+    }).then(() => {
+        alert("Race created successfully!");
+
+        // Show the standard tabs
+        openTab('weeklyActions');
+        weeklyActionsTab.style.display = 'block';
+        timelineTab.style.display = 'block';
+        worldMapTab.style.display = 'block';
+        discussionBoardTab.style.display = 'block';
+        logoutBtn.style.display = 'block';
+    }).catch((error) => {
+        console.error("Error creating race: ", error);
+        alert("There was an error creating your race. Please try again.");
+    });
 });
+
 
 
     // Registration Logic
