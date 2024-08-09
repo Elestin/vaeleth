@@ -377,4 +377,4 @@ auth.onAuthStateChanged((user) => {
 
 // Initial tab state management (you can change as needed)
 openTab('loginForm');
-}); // Ensure this closing bracket matches the opening `document.addEventListener('DOMContentLoaded', function() {` at the top
+); // Ensure this closing bracket matches the opening `document.addEventListener('DOMContentLoaded', function() {` at the top
