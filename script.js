@@ -164,7 +164,7 @@ raceCreationForm.addEventListener('submit', (e) => {
         deityCreationTab.style.display = 'none';
         raceCreatorTab.style.display = 'none';
 
-        // Show the standard tabs and open Weekly Actions
+        // Show the standard tabs
         openTab('weeklyActions');
         weeklyActionsTab.style.display = 'block';
         timelineTab.style.display = 'block';
@@ -176,7 +176,6 @@ raceCreationForm.addEventListener('submit', (e) => {
         alert("There was an error creating your race. Please try again.");
     });
 });
-
 
 
 
