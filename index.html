@@ -9,20 +9,27 @@
 </head>
 
 <!-- Registration Form -->
-<div id="registrationForm">
-    <h2>Register</h2>
-    <input type="text" id="registerEmail" placeholder="Email">
-    <input type="password" id="registerPassword" placeholder="Password">
-    <button id="registerBtn">Register</button>
+<div id="authContainer">
+    <div id="formToggle">
+        <button id="showLogin">Login</button>
+        <button id="showRegister">Register</button>
+    </div>
+
+    <div id="loginForm" style="display: none;">
+        <h2>Login</h2>
+        <input type="text" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button id="loginBtn">Login</button>
+    </div>
+
+    <div id="registrationForm" style="display: none;">
+        <h2>Register</h2>
+        <input type="text" id="registerEmail" placeholder="Email">
+        <input type="password" id="registerPassword" placeholder="Password">
+        <button id="registerBtn">Register</button>
+    </div>
 </div>
 
-<!-- Login Form -->
-<div id="loginForm">
-    <h2>Login</h2>
-    <input type="text" id="loginEmail" placeholder="Email">
-    <input type="password" id="loginPassword" placeholder="Password">
-    <button id="loginBtn">Login</button>
-</div>    
     
 <body>
 <div class="tab-container">
