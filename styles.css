@@ -1,7 +1,7 @@
-/* Base styling */
 body, html {
-    font-family: 'Cinzel', serif; /* Fantasy-themed font */
-    background-color: #2b2b2b;
+    font-family: 'Cinzel', serif;
+    background-color: #1a1a2e;
+    color: #eaeaea;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -10,143 +10,99 @@ body, html {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url('images/fantasy-background.jpg'); /* Replace with a fantasy-themed image */
+    gap: 20px;
+    background-image: url('path_to_your_background_image.jpg'); /* Replace with your background image */
     background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
-    color: #f5f5f5;
-}
-
-h1, h2, h3 {
-    font-family: 'Cinzel Decorative', serif; /* Fancy, decorative font */
-    color: #ddb55d; /* Goldish color for headings */
-    text-shadow: 2px 2px 5px #000000;
 }
 
 .container {
-    width: 500px;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    width: 400px;
+    background-color: rgba(0, 0, 51, 0.85); /* Dark blue background with some transparency */
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8); /* Glowing shadow */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red shadow */
     margin: 20px auto;
-    border: 2px solid #ddb55d; /* Goldish border */
+}
+
+h2, h3 {
+    border-bottom: 2px solid #4444ff; /* Blue underline */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #ffcccb; /* Light red text */
 }
 
 label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #fff;
+    color: #ffcccb; /* Light red text */
 }
 
-/* Form & Input Styles */
 input[type="text"], input[type="password"], select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddb55d; /* Goldish border */
-    border-radius: 5px;
-    background-color: #4a4a4a;
-    color: #f5f5f5;
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #8888ff; /* Blue border */
+    border-radius: 4px;
+    background-color: #33334d; /* Dark blue input background */
+    color: #eaeaea;
 }
 
 input[type="submit"], button {
-    padding: 10px 20px;
+    padding: 8px 15px;
     border: none;
-    background-color: #7d5a4a; /* Wood-like color */
-    color: #f5f5f5;
-    border-radius: 5px;
+    background-color: #ff3333; /* Bright red background */
+    color: #fff;
+    border-radius: 4px;
     cursor: pointer;
-    font-family: 'Cinzel Decorative', serif;
-    transition: background-color 0.3s;
-    margin-right: 10px;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.8); /* Glowing shadow */
 }
 
 input[type="submit"]:hover, button:hover {
-    background-color: #ddb55d; /* Glowing gold effect */
+    background-color: #b30000; /* Darker red on hover */
 }
 
-/* Tab Styles */
 .tab-container {
     display: flex;
     justify-content: space-around;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(26, 26, 46, 0.9); /* Dark blue tab container */
     padding: 10px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    border-bottom: 1px solid #ddb55d;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #4444ff;
+    box-shadow: 0 2px 5px rgba(255, 0, 0, 0.5); /* Red shadow */
     z-index: 1000;
 }
 
 .tab {
-    padding: 15px 25px;
+    padding: 10px 20px;
     cursor: pointer;
-    font-family: 'Cinzel Decorative', serif;
-    color: #f5f5f5;
-    transition: background-color 0.3s;
-}
-
-.tab:hover {
-    background-color: #7d5a4a;
+    color: #ffcccb; /* Light red text */
+    background-color: #33334d; /* Dark blue tab */
+    border-radius: 5px;
 }
 
 .tab-content {
     display: none;
-    max-width: 800px;
-    margin: 100px auto 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 30px;
+    max-width: 600px;
+    margin: 60px auto 20px;
+    background-color: rgba(0, 0, 51, 0.85); /* Dark blue background with some transparency */
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    border: 2px solid #ddb55d;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red shadow */
+    color: #eaeaea;
 }
 
-/* Action dropdown & info */
-#actionDropdown, #domainDropdown {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #4a4a4a;
-    border: 1px solid #ddb55d;
-    color: #f5f5f5;
+button {
+    background-color: #ff3333; /* Bright red background */
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
     border-radius: 5px;
-}
-
-.action-info {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    color: #ddb55d;
-}
-
-#selectedActionsList li {
-    background-color: rgba(125, 90, 74, 0.7);
-    padding: 8px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    color: #f5f5f5;
-}
-
-#selectedActionsList li span {
-    background-color: rgba(125, 90, 74, 0.7);
-    padding: 2px 5px;
-    border-radius: 50%;
-    font-weight: bold;
-}
-
-/* Resource summary styling */
-.resource-summary p {
-    display: inline-block;
-    background-color: rgba(125, 90, 74, 0.7);
-    padding: 8px 12px;
-    border-radius: 5px;
+    cursor: pointer;
     margin-right: 10px;
-    margin-bottom: 10px;
-    color: #f5f5f5;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #b30000; /* Darker red on hover */
 }
