@@ -186,12 +186,17 @@ logoutBtn.addEventListener('click', () => {
     auth.signOut().then(() => {
         console.log('User signed out');
         alert('You have been logged out.');
+        
+        // Show the auth container and the login form
         document.getElementById('authContainer').style.display = 'block';
         loginForm.style.display = 'block';
         registrationForm.style.display = 'none';
         logoutBtn.style.display = 'none';
 
-        // Hide all tabs when logged out
+        // Hide the entire tab container
+        document.querySelector('.tab-container').style.display = 'none';
+        
+        // Ensure all tab contents are hidden
         deityCreationTab.style.display = 'none';
         raceCreatorTab.style.display = 'none';
         weeklyActionsTab.style.display = 'none';
