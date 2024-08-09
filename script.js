@@ -127,12 +127,15 @@ function checkUserState(user) {
     // Authentication State Change Listener
 auth.onAuthStateChanged((user) => {
     if (user) {
+        // Hide the authContainer when the user is logged in
         document.getElementById('authContainer').style.display = 'none';
-        // Check the user's state (deity and race)
-        checkUserState(user);
+        checkUserState(user); // Check user state after login
         logoutBtn.style.display = 'block';
     } else {
+        // Show the authContainer and default to the login form
         document.getElementById('authContainer').style.display = 'block';
+        loginForm.style.display = 'block';
+        registrationForm.style.display = 'none'; // Ensure registration form is hidden by default
         deityCreationTab.style.display = 'none';
         raceCreatorTab.style.display = 'none';
         weeklyActionsTab.style.display = 'none';
