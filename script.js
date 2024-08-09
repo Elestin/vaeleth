@@ -75,7 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const weeklyActionsTab = document.getElementById('weeklyActionsTab');
     const raceCreatorSection = document.getElementById('raceCreator'); // Assuming this is the ID of the div
     const weeklyActionsSection = document.getElementById('weeklyActions'); // Assuming this is the ID of the div
-    const deityCreationTab = document.getElementById('deityCreationTab');
+    const deityCreationTab = document.getElementById('deityCreationTab');    
+    const timelineTab = document.getElementById('timelineTab');
+    const worldMapTab = document.getElementById('worldMapTab');
+    const discussionBoardTab = document.getElementById('discussionBoardTab');
+    const deityNameDisplay = document.getElementById('deityNameDisplay');
+    const domainDisplay = document.getElementById('domainDisplay');
 
     // Assuming user is logged in
 const user = auth.currentUser;
@@ -103,40 +108,47 @@ function showDeityCreationTab() {
     raceCreatorTab.style.display = 'none';
     weeklyActionsTab.style.display = 'none';
     raceCreatorSection.style.display = 'none';
-    weeklyActionsSection.style.display = 'none';
+    weeklyActionsSection.style.display = 'none';   
+    raceCreatorTab.style.display = 'none';
+    weeklyActionsTab.style.display = 'none';
+    timelineTab.style.display = 'none';
+    worldMapTab.style.display = 'none';
+    discussionBoardTab.style.display = 'none';
     
 // Firebase Authentication State Change Listener
-auth.onAuthStateChanged((user) => {
-    const logoutButton = document.getElementById('logoutBtn');
-    
-    if (user) {
-        // User is signed in.
-        logoutButton.style.display = 'block'; // Show logout button
-        deityCreationTab.style.display = 'block'; // Show deity creator tab
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            const deityRef = database.ref('deities/' + user.uid);
+            deityRef.once('value').then(snapshot => {
+                if (snapshot.exists()) {
+                    const deityData = snapshot.val();
+                    // Deity exists, show Weekly Actions, Timeline, World Map, and Discussion Board
+                    deityNameDisplay.textContent = deityData.name;
+                    domainDisplay.textContent = deityData.domain;
 
-        const deityRef = database.ref('deities/' + user.uid);
-        deityRef.once('value').then(snapshot => {
-            if (snapshot.exists()) {
-                // Deity exists for this user
-                hideDeityCreationTab();
-            } else {
-                // No deity for this user
-                showDeityCreationTab();
-            }
-        });
-        
-        raceCreatorTab.style.display = 'block';
-        weeklyActionsTab.style.display = 'block';
-    } else {
-        // No user is signed in.
-        logoutButton.style.display = 'none'; // Hide logout button
-        deityCreationTab.style.display = 'none'; // Hide deity creator tab
-        
-        raceCreatorTab.style.display = 'none';
-        weeklyActionsTab.style.display = 'none';
-        raceCreatorSection.style.display = 'none';
-        weeklyActionsSection.style.display = 'none';
-    }
+                    weeklyActionsTab.style.display = 'block';
+                    timelineTab.style.display = 'block';
+                    worldMapTab.style.display = 'block';
+                    discussionBoardTab.style.display = 'block';
+                } else {
+                    // No deity, show Deity Creator and Race Creator
+                    deityCreationTab.style.display = 'block';
+                    raceCreatorTab.style.display = 'block';
+                }
+            });
+
+            document.getElementById('logoutBtn').style.display = 'block';
+        } else {
+            // User is logged out, hide everything
+            deityCreationTab.style.display = 'none';
+            raceCreatorTab.style.display = 'none';
+            weeklyActionsTab.style.display = 'none';
+            timelineTab.style.display = 'none';
+            worldMapTab.style.display = 'none';
+            discussionBoardTab.style.display = 'none';
+            document.getElementById('logoutBtn').style.display = 'none';
+        }
+    });
 });
 
 
