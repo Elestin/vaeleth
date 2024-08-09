@@ -99,49 +99,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Deity Creator Form Submission
-    deityCreationForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const user = auth.currentUser;
+// Deity Creator Form Submission
+deityCreationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const user = auth.currentUser;
 
-        if (user) {
-            const deityRef = database.ref('deities/' + user.uid);
-            deityRef.once('value').then(snapshot => {
-                if (snapshot.exists()) {
-                    alert("You have already created a deity. You cannot create another one.");
-                } else {
-                    const deityName = document.getElementById('deityName').value.trim();
-                    const playerName = document.getElementById('playerName').value.trim();
-                    const domainDropdown = document.getElementById('domainDropdown').value;
+    if (user) {
+        const deityRef = database.ref('deities/' + user.uid);
+        deityRef.once('value').then(snapshot => {
+            if (snapshot.exists()) {
+                alert("You have already created a deity. You cannot create another one.");
+            } else {
+                const deityName = document.getElementById('deityName').value.trim();
+                const playerName = document.getElementById('playerName').value.trim();
+                const domainDropdown = document.getElementById('domainDropdown').value;
 
-                    deityRef.set({
-                        name: deityName,
-                        playerName: playerName,
-                        domain: domainDropdown
-                    }).then(() => {
-                        alert("Deity created successfully!");
-                        deityCreationTab.style.display = 'none';
-                        raceCreatorTab.style.display = 'none';
-                        weeklyActionsTab.style.display = 'block';
-                        timelineTab.style.display = 'block';
-                        worldMapTab.style.display = 'block';
-                        discussionBoardTab.style.display = 'block';
+                deityRef.set({
+                    name: deityName,
+                    playerName: playerName,
+                    domain: domainDropdown
+                }).then(() => {
+                    alert("Deity created successfully!");
+                    deityCreationTab.style.display = 'none';
+                    raceCreatorTab.style.display = 'block';
+                    weeklyActionsTab.style.display = 'block';
+                    timelineTab.style.display = 'block';
+                    worldMapTab.style.display = 'block';
+                    discussionBoardTab.style.display = 'block';
 
-                        deityNameDisplay.textContent = deityName;
-                        domainDisplay.textContent = domainDropdown;
-                    }).catch((error) => {
-                        console.error("Error creating deity: ", error);
-                        alert("There was an error creating your deity. Please try again.");
-                    });
-                }
-            }).catch((error) => {
-                console.error("Error checking deity: ", error);
-                alert("There was an error checking your deity status. Please try again.");
-            });
-        } else {
-            alert("You must be logged in to create a deity.");
-        }
-    });
+                    deityNameDisplay.textContent = deityName;
+                    domainDisplay.textContent = domainDropdown;
+
+                    // Automatically open the Race Creator tab
+                    openTab('raceCreator');
+                }).catch((error) => {
+                    console.error("Error creating deity: ", error);
+                    alert("There was an error creating your deity. Please try again.");
+                });
+            }
+        }).catch((error) => {
+            console.error("Error checking deity: ", error);
+            alert("There was an error checking your deity status. Please try again.");
+        });
+    } else {
+        alert("You must be logged in to create a deity.");
+    }
+});
+
 
     // Registration Logic
     registerBtn.addEventListener('click', (e) => {
