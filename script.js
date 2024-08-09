@@ -279,12 +279,10 @@ raceCreationForm.addEventListener('submit', (e) => {
     }).then(() => {
         alert("Race created successfully!");
 
-        // Hide the Deity Creator and Race Creator tabs
+        // Move to Weekly Actions and hide the Deity Creator and Race Creator tabs
+        openTab('weeklyActions');
         deityCreationTab.style.display = 'none';
         raceCreatorTab.style.display = 'none';
-
-        // Show the standard tabs and open Weekly Actions
-        openTab('weeklyActions');
         weeklyActionsTab.style.display = 'block';
         timelineTab.style.display = 'block';
         worldMapTab.style.display = 'block';
@@ -295,6 +293,7 @@ raceCreationForm.addEventListener('submit', (e) => {
         alert("There was an error creating your race. Please try again.");
     });
 });
+
 
 
 
