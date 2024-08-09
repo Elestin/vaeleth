@@ -68,18 +68,64 @@ document.addEventListener('DOMContentLoaded', function() {
     worldMapTab.style.display = 'none';
     discussionBoardTab.style.display = 'none';
 
+        // Function to handle login
+    loginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then((user) => {
+                console.log("User logged in successfully", user);
+                document.getElementById('authContainer').style.display = 'none';
+                logoutBtn.style.display = 'block';
+                checkUserState(user); // Check user state after login
+            })
+            .catch((error) => {
+                console.error("Error logging in", error.message);
+                alert("Login failed. Please check your credentials.");
+            });
+    });
+
+    // Function to handle registration
+    registerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((user) => {
+                console.log("User registered successfully", user);
+                alert("Registration successful! Please log in.");
+                // Switch to login form after registration
+                registrationForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            })
+            .catch((error) => {
+                console.error("Error registering user", error.message);
+                alert("Registration failed. Please try again.");
+            });
+    });
+
+    // Switch to Registration Form
+    document.getElementById('switchToRegister').addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.style.display = 'none';
+        registrationForm.style.display = 'block';
+    });
+
+    // Switch to Login Form
+    document.getElementById('switchToLogin').addEventListener('click', (e) => {
+        e.preventDefault();
+        registrationForm.style.display = 'none';
+        loginForm.style.display = 'block';
+    });
+    
+
         // Show the login form by default
     loginForm.style.display = 'block';
 
-    showLogin.addEventListener('click', () => {
-        loginForm.style.display = 'block';
-        registrationForm.style.display = 'none';
-    });
 
-    showRegister.addEventListener('click', () => {
-        registrationForm.style.display = 'block';
-        loginForm.style.display = 'none';
-    });
 
 function checkUserState(user) {
     const deityRef = database.ref('deities/' + user.uid);
@@ -129,26 +175,28 @@ function checkUserState(user) {
         if (user) {
             document.getElementById('authContainer').style.display = 'none';
             logoutBtn.style.display = 'block';
-            checkUserState(user);
+            checkUserState(user); // Check user state after login
         } else {
             document.getElementById('authContainer').style.display = 'block';
             loginForm.style.display = 'block';
             registrationForm.style.display = 'none';
-            deityCreationTab.style.display = 'none';
-            raceCreatorTab.style.display = 'none';
-            weeklyActionsTab.style.display = 'none';
-            timelineTab.style.display = 'none';
-            worldMapTab.style.display = 'none';
-            discussionBoardTab.style.display = 'none';
             logoutBtn.style.display = 'none';
         }
     });
 
-    // Optionally, if you want to switch to the registration form programmatically
-    document.getElementById('switchToRegister').addEventListener('click', () => {
-        registrationForm.style.display = 'block';
-        loginForm.style.display = 'none';
-    });    
+    // Logout Logic
+    logoutBtn.addEventListener('click', () => {
+        auth.signOut().then(() => {
+            console.log('User signed out');
+            alert('You have been logged out.');
+            document.getElementById('authContainer').style.display = 'block';
+            loginForm.style.display = 'block';
+            registrationForm.style.display = 'none';
+            logoutBtn.style.display = 'none';
+        }).catch((error) => {
+            console.error('Error signing out:', error);
+        });
+    }); 
 
 
 // Deity Creator Form Submission
