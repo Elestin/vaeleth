@@ -55,6 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const deityNameDisplay = document.getElementById('deityNameDisplay');
     const domainDisplay = document.getElementById('domainDisplay');
     const deityCreationForm = document.getElementById('domainCreationForm');
+    const showLogin = document.getElementById('showLogin');
+    const showRegister = document.getElementById('showRegister');
+    const loginForm = document.getElementById('loginForm');
+    const registrationForm = document.getElementById('registrationForm');
 
     // Hide all tabs initially
     deityCreationTab.style.display = 'none';
@@ -63,6 +67,19 @@ document.addEventListener('DOMContentLoaded', function() {
     timelineTab.style.display = 'none';
     worldMapTab.style.display = 'none';
     discussionBoardTab.style.display = 'none';
+
+        // Show the login form by default
+    loginForm.style.display = 'block';
+
+    showLogin.addEventListener('click', () => {
+        loginForm.style.display = 'block';
+        registrationForm.style.display = 'none';
+    });
+
+    showRegister.addEventListener('click', () => {
+        registrationForm.style.display = 'block';
+        loginForm.style.display = 'none';
+    });
 
 function checkUserState(user) {
     const deityRef = database.ref('deities/' + user.uid);
@@ -110,21 +127,12 @@ function checkUserState(user) {
     // Authentication State Change Listener
 auth.onAuthStateChanged((user) => {
     if (user) {
-        // Hide the login and registration forms
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('registrationForm').style.display = 'none';
-
+        document.getElementById('authContainer').style.display = 'none';
         // Check the user's state (deity and race)
         checkUserState(user);
-
-        // Show logout button
         logoutBtn.style.display = 'block';
     } else {
-        // User is logged out, show the login and registration forms
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('registrationForm').style.display = 'block';
-
-        // Hide everything else
+        document.getElementById('authContainer').style.display = 'block';
         deityCreationTab.style.display = 'none';
         raceCreatorTab.style.display = 'none';
         weeklyActionsTab.style.display = 'none';
