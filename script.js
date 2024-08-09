@@ -297,6 +297,7 @@ raceCreationForm.addEventListener('submit', (e) => {
 });
 
 
+
     // Logout Logic
     logoutBtn.addEventListener('click', () => {
         auth.signOut().then(() => {
