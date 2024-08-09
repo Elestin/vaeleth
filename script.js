@@ -107,7 +107,6 @@ function checkUserState(user) {
     });
 }
 
-
     // Authentication State Change Listener
 auth.onAuthStateChanged((user) => {
     if (user) {
@@ -135,6 +134,7 @@ auth.onAuthStateChanged((user) => {
         logoutBtn.style.display = 'none';
     }
 });
+
 
 
 // Deity Creator Form Submission
@@ -175,7 +175,6 @@ raceCreationForm.addEventListener('submit', (e) => {
         alert("There was an error creating your race. Please try again.");
     });
 });
-
 
     // Registration Logic
     registerBtn.addEventListener('click', (e) => {
