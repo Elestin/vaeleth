@@ -136,6 +136,10 @@ raceCreationForm.addEventListener('submit', (e) => {
     }).then(() => {
         alert("Race created successfully!");
 
+        // Hide the Deity Creator and Race Creator tabs
+        deityCreationTab.style.display = 'none';
+        raceCreatorTab.style.display = 'none';
+
         // Show the standard tabs
         openTab('weeklyActions');
         weeklyActionsTab.style.display = 'block';
