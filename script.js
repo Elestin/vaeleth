@@ -1,3 +1,4 @@
+
 // Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyA63cEw6eNLIrgM-85otGF2lzzOgbT6Po0",
@@ -59,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const showRegister = document.getElementById('showRegister');
     const loginForm = document.getElementById('loginForm');
     const registrationForm = document.getElementById('registrationForm');
-    const weeklyActionsForm = document.getElementById('weeklyActionsForm');
 
     // Hide all tabs initially
     deityCreationTab.style.display = 'none';
@@ -69,14 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
     worldMapTab.style.display = 'none';
     discussionBoardTab.style.display = 'none';
 
-    // Show the login form by default
-    loginForm.style.display = 'block';
-
-    // Function to handle login
+        // Function to handle login
     loginBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const email = loginEmail.value;
-        const password = loginPassword.value;
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
 
         auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
@@ -94,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to handle registration
     registerBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const email = registerEmail.value;
-        const password = registerPassword.value;
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
 
         auth.createUserWithEmailAndPassword(email, password)
             .then((user) => {
@@ -112,40 +109,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Switch to Registration Form
-    showRegister.addEventListener('click', (e) => {
+    document.getElementById('switchToRegister').addEventListener('click', (e) => {
         e.preventDefault();
         loginForm.style.display = 'none';
         registrationForm.style.display = 'block';
     });
 
     // Switch to Login Form
-    showLogin.addEventListener('click', (e) => {
+    document.getElementById('switchToLogin').addEventListener('click', (e) => {
         e.preventDefault();
         registrationForm.style.display = 'none';
         loginForm.style.display = 'block';
     });
+    
+
+        // Show the login form by default
+    loginForm.style.display = 'block';
+
+
 
 function checkUserState(user) {
-    console.log("Checking user state for user:", user.uid);
-
     const deityRef = database.ref('deities/' + user.uid);
     deityRef.once('value').then(snapshot => {
-        console.log("Deity exists:", snapshot.exists());
-
         if (snapshot.exists()) {
             const deityData = snapshot.val();
-            console.log("Deity data:", deityData);
             deityNameDisplay.textContent = deityData.name;
             domainDisplay.textContent = deityData.domain;
 
             // Check if the user has a race
             const raceRef = database.ref('races/' + user.uid);
             raceRef.once('value').then(raceSnapshot => {
-                console.log("Race exists:", raceSnapshot.exists());
-
                 if (raceSnapshot.exists()) {
                     // Race exists, show Weekly Actions and hide others
-                    console.log("Race found, opening Weekly Actions");
                     openTab('weeklyActions');
                     weeklyActionsTab.style.display = 'block';
                     timelineTab.style.display = 'block';
@@ -155,7 +150,6 @@ function checkUserState(user) {
                     raceCreatorTab.style.display = 'none';
                 } else {
                     // No race, show Race Creator and hide others
-                    console.log("No race found, opening Race Creator");
                     openTab('raceCreator');
                     raceCreatorTab.style.display = 'block';
                     weeklyActionsTab.style.display = 'none';
@@ -163,12 +157,9 @@ function checkUserState(user) {
                     worldMapTab.style.display = 'none';
                     discussionBoardTab.style.display = 'none';
                 }
-            }).catch(error => {
-                console.error("Error checking race:", error);
             });
         } else {
             // No deity, show Deity Creator and hide others
-            console.log("No deity found, opening Deity Creator");
             openTab('deityCreator');
             deityCreationTab.style.display = 'block';
             raceCreatorTab.style.display = 'none';
@@ -177,12 +168,8 @@ function checkUserState(user) {
             worldMapTab.style.display = 'none';
             discussionBoardTab.style.display = 'none';
         }
-    }).catch(error => {
-        console.error("Error checking deity:", error);
     });
 }
-
-
 
     // Authentication State Change Listener
     auth.onAuthStateChanged((user) => {
@@ -210,44 +197,83 @@ function checkUserState(user) {
         }).catch((error) => {
             console.error('Error signing out:', error);
         });
-    });
+    }); 
 
-    // Deity Creator Form Submission
-    deityCreationForm.addEventListener('submit', (e) => {
+
+// Deity Creator Form Submission
+deityCreationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const user = auth.currentUser;
+
+    if (user) {
+        const deityRef = database.ref('deities/' + user.uid);
+        deityRef.once('value').then(snapshot => {
+            if (snapshot.exists()) {
+                alert("You have already created a deity. You cannot create another one.");
+            } else {
+                const deityName = document.getElementById('deityName').value.trim();
+                const playerName = document.getElementById('playerName').value.trim();
+                const domainDropdown = document.getElementById('domainDropdown').value;
+
+                deityRef.set({
+                    name: deityName,
+                    playerName: playerName,
+                    domain: domainDropdown
+                }).then(() => {
+                    alert("Deity created successfully!");
+                    deityCreationTab.style.display = 'none';
+                    checkUserState(user); // Check for race after deity creation
+                }).catch((error) => {
+                    console.error("Error creating deity: ", error);
+                    alert("There was an error creating your deity. Please try again.");
+                });
+            }
+        }).catch((error) => {
+            console.error("Error checking deity: ", error);
+            alert("There was an error checking your deity status. Please try again.");
+        });
+    } else {
+        alert("You must be logged in to create a deity.");
+    }
+});
+
+
+    // Registration Logic
+    registerBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const user = auth.currentUser;
 
-        if (user) {
-            const deityRef = database.ref('deities/' + user.uid);
-            deityRef.once('value').then(snapshot => {
-                if (snapshot.exists()) {
-                    alert("You have already created a deity. You cannot create another one.");
-                } else {
-                    const deityName = document.getElementById('deityName').value.trim();
-                    const playerName = document.getElementById('playerName').value.trim();
-                    const domainDropdown = document.getElementById('domainDropdown').value;
+        const email = registerEmail.value;
+        const password = registerPassword.value;
 
-                    deityRef.set({
-                        name: deityName,
-                        playerName: playerName,
-                        domain: domainDropdown
-                    }).then(() => {
-                        alert("Deity created successfully!");
-                        deityCreationTab.style.display = 'none';
-                        checkUserState(user); // Check for race after deity creation
-                    }).catch((error) => {
-                        console.error("Error creating deity: ", error);
-                        alert("There was an error creating your deity. Please try again.");
-                    });
-                }
-            }).catch((error) => {
-                console.error("Error checking deity: ", error);
-                alert("There was an error checking your deity status. Please try again.");
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((user) => {
+                console.log("User registered successfully", user);
+                // You might want to hide registration form and show user's personal content here
+            })
+            .catch((error) => {
+                console.error("Error registering user", error.message);
             });
-        } else {
-            alert("You must be logged in to create a deity.");
-        }
     });
+
+    // Login Logic
+loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const email = loginEmail.value;
+    const password = loginPassword.value;
+
+    auth.signInWithEmailAndPassword(email, password)
+        .then((user) => {
+            console.log("User logged in successfully", user);
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registrationForm').style.display = 'none';
+            checkUserState(user); // Check user state after login
+        })
+        .catch((error) => {
+            console.error("Error logging in", error.message);
+        });
+});
+
 
     // Race Creator Logic
     let remainingPoints = 100;
@@ -295,73 +321,53 @@ function checkUserState(user) {
         pointsDisplay.textContent = remainingPoints;
     });
 
-    raceCreationForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const raceName = raceNameInput.value.trim();  // Get the value and trim any white spaces
-        if (!raceName) {
-            alert("Please provide a race name!");
-            return;
-        }
-        if (selectedCharacteristics.length === 0) {
-            alert("You haven't selected any characteristics!");
-            return;
-        }
+raceCreationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const raceName = raceNameInput.value.trim();  // Get the value and trim any white spaces
+    if (!raceName) {
+        alert("Please provide a race name!");
+        return;
+    }
+    if (selectedCharacteristics.length === 0) {
+        alert("You haven't selected any characteristics!");
+        return;
+    }
 
-        const userID = auth.currentUser.uid;
-        const raceRef = database.ref('races/' + userID);
-        raceRef.set({
-            name: raceName,  // Including the race name in the data being saved
-            characteristics: selectedCharacteristics,
-            pointsLeft: remainingPoints
-        }).then(() => {
-            alert("Race created successfully!");
+    const userID = auth.currentUser.uid;
+    const raceRef = database.ref('races/' + userID);
+    raceRef.set({
+        name: raceName,  // Including the race name in the data being saved
+        characteristics: selectedCharacteristics,
+        pointsLeft: remainingPoints
+    }).then(() => {
+        alert("Race created successfully!");
 
-            // Move to Weekly Actions and hide the Deity Creator and Race Creator tabs
-            openTab('weeklyActions');
-            deityCreationTab.style.display = 'none';
-            raceCreatorTab.style.display = 'none';
-            weeklyActionsTab.style.display = 'block';
-            timelineTab.style.display = 'block';
-            worldMapTab.style.display = 'block';
-            discussionBoardTab.style.display = 'block';
-            logoutBtn.style.display = 'block';
-        }).catch((error) => {
-            console.error("Error creating race: ", error);
-            alert("There was an error creating your race. Please try again.");
-        });
+        // Move to Weekly Actions and hide the Deity Creator and Race Creator tabs
+        openTab('weeklyActions');
+        deityCreationTab.style.display = 'none';
+        raceCreatorTab.style.display = 'none';
+        weeklyActionsTab.style.display = 'block';
+        timelineTab.style.display = 'block';
+        worldMapTab.style.display = 'block';
+        discussionBoardTab.style.display = 'block';
+        logoutBtn.style.display = 'block';
+    }).catch((error) => {
+        console.error("Error creating race: ", error);
+        alert("There was an error creating your race. Please try again.");
     });
+});
 
-    // Weekly Actions Logic
-    weeklyActionsForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Your logic for handling weekly actions submission goes here.
-        alert("Weekly actions submitted!");
 
-        // Example of saving data to Firebase
-        const userID = auth.currentUser.uid;
-        const actionData = {
-            // collect data from your weekly actions form
-        };
-        database.ref('weeklyActions/' + userID).set(actionData).then(() => {
-            alert("Weekly actions saved successfully!");
-        }).catch((error) => {
-            console.error("Error saving weekly actions: ", error);
-            alert("There was an error saving your weekly actions. Please try again.");
-        });
-    });
+
 
     // Logout Logic
     logoutBtn.addEventListener('click', () => {
         auth.signOut().then(() => {
             console.log('User signed out');
             alert('You have been logged out.');
-            document.getElementById('authContainer').style.display = 'block';
-            loginForm.style.display = 'block';
-            registrationForm.style.display = 'none';
-            logoutBtn.style.display = 'none';
+            // Redirect or hide/show relevant content if needed
         }).catch((error) => {
             console.error('Error signing out:', error);
         });
     });
 });
-
