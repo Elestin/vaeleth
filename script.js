@@ -181,28 +181,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-// Logout Logic
-logoutBtn.addEventListener('click', () => {
-    auth.signOut().then(() => {
-        console.log('User signed out');
-        alert('You have been logged out.');
-        document.getElementById('authContainer').style.display = 'block';
-        loginForm.style.display = 'block';
-        registrationForm.style.display = 'none';
-        logoutBtn.style.display = 'none';
-
-        // Hide all tabs when logged out
-        deityCreationTab.style.display = 'none';
-        raceCreatorTab.style.display = 'none';
-        weeklyActionsTab.style.display = 'none';
-        timelineTab.style.display = 'none';
-        worldMapTab.style.display = 'none';
-        discussionBoardTab.style.display = 'none';
-    }).catch((error) => {
-        console.error('Error signing out:', error);
+    // Logout Logic
+    logoutBtn.addEventListener('click', () => {
+        auth.signOut().then(() => {
+            console.log('User signed out');
+            alert('You have been logged out.');
+            document.getElementById('authContainer').style.display = 'block';
+            loginForm.style.display = 'block';
+            registrationForm.style.display = 'none';
+            logoutBtn.style.display = 'none';
+        }).catch((error) => {
+            console.error('Error signing out:', error);
+        });
     });
-});
-
 
 // Deity Creator Form Submission
 deityCreationForm.addEventListener('submit', (e) => {
