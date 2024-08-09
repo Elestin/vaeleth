@@ -125,27 +125,30 @@ function checkUserState(user) {
 }
 
     // Authentication State Change Listener
-auth.onAuthStateChanged((user) => {
-    if (user) {
-        // Hide the authContainer when the user is logged in
-        document.getElementById('authContainer').style.display = 'none';
-        checkUserState(user); // Check user state after login
-        logoutBtn.style.display = 'block';
-    } else {
-        // Show the authContainer and default to the login form
-        document.getElementById('authContainer').style.display = 'block';
-        loginForm.style.display = 'block';
-        registrationForm.style.display = 'none'; // Ensure registration form is hidden by default
-        deityCreationTab.style.display = 'none';
-        raceCreatorTab.style.display = 'none';
-        weeklyActionsTab.style.display = 'none';
-        timelineTab.style.display = 'none';
-        worldMapTab.style.display = 'none';
-        discussionBoardTab.style.display = 'none';
-        logoutBtn.style.display = 'none';
-    }
-});
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            document.getElementById('authContainer').style.display = 'none';
+            logoutBtn.style.display = 'block';
+            checkUserState(user);
+        } else {
+            document.getElementById('authContainer').style.display = 'block';
+            loginForm.style.display = 'block';
+            registrationForm.style.display = 'none';
+            deityCreationTab.style.display = 'none';
+            raceCreatorTab.style.display = 'none';
+            weeklyActionsTab.style.display = 'none';
+            timelineTab.style.display = 'none';
+            worldMapTab.style.display = 'none';
+            discussionBoardTab.style.display = 'none';
+            logoutBtn.style.display = 'none';
+        }
+    });
 
+    // Optionally, if you want to switch to the registration form programmatically
+    document.getElementById('switchToRegister').addEventListener('click', () => {
+        registrationForm.style.display = 'block';
+        loginForm.style.display = 'none';
+    });    
 
 
 // Deity Creator Form Submission
