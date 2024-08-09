@@ -125,48 +125,51 @@ document.addEventListener('DOMContentLoaded', function() {
         loginForm.style.display = 'block';
     });
 
-    function checkUserState(user) {
-        const deityRef = database.ref('deities/' + user.uid);
-        deityRef.once('value').then(snapshot => {
-            if (snapshot.exists()) {
-                const deityData = snapshot.val();
-                deityNameDisplay.textContent = deityData.name;
-                domainDisplay.textContent = deityData.domain;
+function checkUserState(user) {
+    const deityRef = database.ref('deities/' + user.uid);
+    deityRef.once('value').then(snapshot => {
+        if (snapshot.exists()) {
+            const deityData = snapshot.val();
+            deityNameDisplay.textContent = deityData.name;
+            domainDisplay.textContent = deityData.domain;
 
-                // Check if the user has a race
-                const raceRef = database.ref('races/' + user.uid);
-                raceRef.once('value').then(raceSnapshot => {
-                    if (raceSnapshot.exists()) {
-                        // Race exists, show Weekly Actions and hide others
-                        openTab('weeklyActions');
-                        weeklyActionsTab.style.display = 'block';
-                        timelineTab.style.display = 'block';
-                        worldMapTab.style.display = 'block';
-                        discussionBoardTab.style.display = 'block';
-                        deityCreationTab.style.display = 'none';
-                        raceCreatorTab.style.display = 'none';
-                    } else {
-                        // No race, show Race Creator and hide others
-                        openTab('raceCreator');
-                        raceCreatorTab.style.display = 'block';
-                        weeklyActionsTab.style.display = 'none';
-                        timelineTab.style.display = 'none';
-                        worldMapTab.style.display = 'none';
-                        discussionBoardTab.style.display = 'none';
-                    }
-                });
-            } else {
-                // No deity, show Deity Creator and hide others
-                openTab('deityCreator');
-                deityCreationTab.style.display = 'block';
-                raceCreatorTab.style.display = 'none';
-                weeklyActionsTab.style.display = 'none';
-                timelineTab.style.display = 'none';
-                worldMapTab.style.display = 'none';
-                discussionBoardTab.style.display = 'none';
-            }
-        });
-    }
+            // Check if the user has a race
+            const raceRef = database.ref('races/' + user.uid);
+            raceRef.once('value').then(raceSnapshot => {
+                if (raceSnapshot.exists()) {
+                    // Race exists, show Weekly Actions and hide others
+                    openTab('weeklyActions');
+                    weeklyActionsTab.style.display = 'block';
+                    timelineTab.style.display = 'block';
+                    worldMapTab.style.display = 'block';
+                    discussionBoardTab.style.display = 'block';
+                    deityCreationTab.style.display = 'none';
+                    raceCreatorTab.style.display = 'none';
+                } else {
+                    // No race, show Race Creator and hide others
+                    openTab('raceCreator');
+                    raceCreatorTab.style.display = 'block';
+                    weeklyActionsTab.style.display = 'none';
+                    timelineTab.style.display = 'none';
+                    worldMapTab.style.display = 'none';
+                    discussionBoardTab.style.display = 'none';
+                }
+            });
+        } else {
+            // No deity, show Deity Creator and hide others
+            openTab('deityCreator');
+            deityCreationTab.style.display = 'block';
+            raceCreatorTab.style.display = 'none';
+            weeklyActionsTab.style.display = 'none';
+            timelineTab.style.display = 'none';
+            worldMapTab.style.display = 'none';
+            discussionBoardTab.style.display = 'none';
+        }
+    }).catch(error => {
+        console.error("Error checking user state: ", error);
+    });
+}
+
 
     // Authentication State Change Listener
     auth.onAuthStateChanged((user) => {
