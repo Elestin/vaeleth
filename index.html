@@ -25,13 +25,15 @@
 </div>    
     
 <body>
-    <div class="tab-container">
-        <button class="tab" id="deityCreationTab" onclick="openTab('deityCreator')">Deity Creator</button>
-        <button class="tab" id="raceCreatorTab" onclick="openTab('raceCreator')">Race Creator</button>
-        <button class="tab" id="weeklyActionsTab" onclick="openTab('weeklyActions')">Weekly Actions</button>
-        <button id="logoutBtn" style="display: none;">Logout</button>
-
-    </div>
+<div class="tab-container">
+    <button class="tab" id="deityCreationTab" onclick="openTab('deityCreator')">Deity Creator</button>
+    <button class="tab" id="raceCreatorTab" onclick="openTab('raceCreator')">Race Creator</button>
+    <button class="tab" id="weeklyActionsTab" onclick="openTab('weeklyActions')">Weekly Actions</button>
+    <button class="tab" id="timelineTab" onclick="openTab('timeline')">Timeline</button>
+    <button class="tab" id="worldMapTab" onclick="openTab('worldMap')">World Map</button>
+    <button class="tab" id="discussionBoardTab" onclick="openTab('discussionBoard')">Discussion Board</button>
+    <button id="logoutBtn" style="display: none;">Logout</button>
+</div>
 
     <div id="deityCreator" class="tab-content">
         <div class="container">
@@ -128,6 +130,8 @@
     <div id="weeklyActions" class="tab-content">
         <div class="container">
             <h2>Weekly Actions</h2>
+        <p>Deity Name: <span id="deityNameDisplay"></span></p>
+        <p>Domain: <span id="domainDisplay"></span></p>
             <form id="weeklyActionsForm">
             <div class="resource-summary">
                 <p>Action Points: <span id="actionPoints">10</span></p>
@@ -160,6 +164,27 @@
         </div>
     </div>
 
+    <!-- New placeholder content -->
+<div id="timeline" class="tab-content">
+    <div class="container">
+        <h2>Timeline of the World</h2>
+        <!-- Timeline content here -->
+    </div>
+</div>
+
+<div id="worldMap" class="tab-content">
+    <div class="container">
+        <h2>World Map</h2>
+        <!-- World map content here -->
+    </div>
+</div>
+
+<div id="discussionBoard" class="tab-content">
+    <div class="container">
+        <h2>Discussion Board</h2>
+        <!-- Discussion board content here -->
+    </div>
+</div>
     <!-- Place the script tag at the end of the body for better performance -->
     
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
