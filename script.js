@@ -14,6 +14,20 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const auth = firebase.auth();
 
+// openTab FUNCTION HERE
+function openTab(tabName) {
+    let i, tabcontent, tablinks;
+
+    // Hide all elements with class="tab-content" by default
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Show the specific tab content
+    document.getElementById(tabName).style.display = "block";
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const raceCreationForm = document.getElementById('raceCreationForm');
