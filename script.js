@@ -126,18 +126,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 function checkUserState(user) {
+    console.log("Checking user state for user:", user.uid);
+
     const deityRef = database.ref('deities/' + user.uid);
     deityRef.once('value').then(snapshot => {
+        console.log("Deity exists:", snapshot.exists());
+
         if (snapshot.exists()) {
             const deityData = snapshot.val();
+            console.log("Deity data:", deityData);
             deityNameDisplay.textContent = deityData.name;
             domainDisplay.textContent = deityData.domain;
 
             // Check if the user has a race
             const raceRef = database.ref('races/' + user.uid);
             raceRef.once('value').then(raceSnapshot => {
+                console.log("Race exists:", raceSnapshot.exists());
+
                 if (raceSnapshot.exists()) {
                     // Race exists, show Weekly Actions and hide others
+                    console.log("Race found, opening Weekly Actions");
                     openTab('weeklyActions');
                     weeklyActionsTab.style.display = 'block';
                     timelineTab.style.display = 'block';
@@ -147,6 +155,7 @@ function checkUserState(user) {
                     raceCreatorTab.style.display = 'none';
                 } else {
                     // No race, show Race Creator and hide others
+                    console.log("No race found, opening Race Creator");
                     openTab('raceCreator');
                     raceCreatorTab.style.display = 'block';
                     weeklyActionsTab.style.display = 'none';
@@ -154,9 +163,12 @@ function checkUserState(user) {
                     worldMapTab.style.display = 'none';
                     discussionBoardTab.style.display = 'none';
                 }
+            }).catch(error => {
+                console.error("Error checking race:", error);
             });
         } else {
             // No deity, show Deity Creator and hide others
+            console.log("No deity found, opening Deity Creator");
             openTab('deityCreator');
             deityCreationTab.style.display = 'block';
             raceCreatorTab.style.display = 'none';
@@ -166,9 +178,10 @@ function checkUserState(user) {
             discussionBoardTab.style.display = 'none';
         }
     }).catch(error => {
-        console.error("Error checking user state: ", error);
+        console.error("Error checking deity:", error);
     });
 }
+
 
 
     // Authentication State Change Listener
