@@ -258,31 +258,44 @@ loginBtn.addEventListener('click', (e) => {
         pointsDisplay.textContent = remainingPoints;
     });
 
-    raceCreationForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const raceName = raceNameInput.value.trim();  // Get the value and trim any white spaces
-        if (!raceName) {
-            alert("Please provide a race name!");
-            return;
-        }
-        if (selectedCharacteristics.length === 0) {
-            alert("You haven't selected any characteristics!");
-            return;
-        }
+raceCreationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const raceName = raceNameInput.value.trim();  // Get the value and trim any white spaces
+    if (!raceName) {
+        alert("Please provide a race name!");
+        return;
+    }
+    if (selectedCharacteristics.length === 0) {
+        alert("You haven't selected any characteristics!");
+        return;
+    }
 
-        const userID = auth.currentUser.uid;
-        const raceRef = database.ref('races/' + userID);
-        raceRef.set({
-            name: raceName,  // Including the race name in the data being saved
-            characteristics: selectedCharacteristics,
-            pointsLeft: remainingPoints
-        }).then(() => {
-            alert("Race created successfully!");
-        }).catch((error) => {
-            console.error("Error creating race: ", error);
-            alert("There was an error creating your race. Please try again.");
-        });
+    const userID = auth.currentUser.uid;
+    const raceRef = database.ref('races/' + userID);
+    raceRef.set({
+        name: raceName,  // Including the race name in the data being saved
+        characteristics: selectedCharacteristics,
+        pointsLeft: remainingPoints
+    }).then(() => {
+        alert("Race created successfully!");
+
+        // Hide the Deity Creator and Race Creator tabs
+        deityCreationTab.style.display = 'none';
+        raceCreatorTab.style.display = 'none';
+
+        // Show the standard tabs and open Weekly Actions
+        openTab('weeklyActions');
+        weeklyActionsTab.style.display = 'block';
+        timelineTab.style.display = 'block';
+        worldMapTab.style.display = 'block';
+        discussionBoardTab.style.display = 'block';
+        logoutBtn.style.display = 'block';
+    }).catch((error) => {
+        console.error("Error creating race: ", error);
+        alert("There was an error creating your race. Please try again.");
     });
+});
+
 
     // Logout Logic
     logoutBtn.addEventListener('click', () => {
