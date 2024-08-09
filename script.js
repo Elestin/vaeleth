@@ -1,63 +1,22 @@
-        // Configuration from Firebase Console
-    const firebaseConfig = {
-        apiKey: "AIzaSyA63cEw6eNLIrgM-85otGF2lzzOgbT6Po0",
-        authDomain: "vaeleth-5a9d4.firebaseapp.com",
-        databaseURL: "https://vaeleth-5a9d4-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "vaeleth-5a9d4",
-        storageBucket: "vaeleth-5a9d4.appspot.com",
-        messagingSenderId: "177032092540",
-        appId: "1:177032092540:web:e59d76832057f3e09fe2f9"
-    };    
+// Firebase Configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA63cEw6eNLIrgM-85otGF2lzzOgbT6Po0",
+    authDomain: "vaeleth-5a9d4.firebaseapp.com",
+    databaseURL: "https://vaeleth-5a9d4-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "vaeleth-5a9d4",
+    storageBucket: "vaeleth-5a9d4.appspot.com",
+    messagingSenderId: "177032092540",
+    appId: "1:177032092540:web:e59d76832057f3e09fe2f9"
+};
+
 // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    
-    const database = firebase.database();
-    const auth = firebase.auth();
+firebase.initializeApp(firebaseConfig);
 
-
-async function submitRaceToDB(name, characteristics) {
-    try {
-        const response = await fetch('http://localhost:3000/api/race', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: name,
-                characteristics: characteristics
-            })
-        });
-
-        if (response.ok) {
-            alert('Race saved successfully!');
-        } else {
-            alert('Failed to save race.');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to save race.');
-    }
-}
-
-function openTab(tabName) {
-    let x = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    document.getElementById(tabName).style.display = "block";
-}
-document.getElementById('logoutBtn').addEventListener('click', () => {
-    auth.signOut().then(() => {
-        console.log('User signed out');
-        alert('You have been logged out.');
-        // Redirect or hide/show relevant content if needed
-    }).catch((error) => {
-        console.error('Error signing out:', error);
-    });
-});
+const database = firebase.database();
+const auth = firebase.auth();
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Race Creator Logic
+    // Element References
     const raceCreationForm = document.getElementById('raceCreationForm');
     const characteristicDropdown = document.getElementById('characteristicDropdown');
     const addCharacteristicBtn = document.getElementById('addCharacteristicBtn');
@@ -73,49 +32,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginBtn = document.getElementById('loginBtn');
     const raceCreatorTab = document.getElementById('raceCreatorTab');
     const weeklyActionsTab = document.getElementById('weeklyActionsTab');
-    const raceCreatorSection = document.getElementById('raceCreator'); // Assuming this is the ID of the div
-    const weeklyActionsSection = document.getElementById('weeklyActions'); // Assuming this is the ID of the div
+    const raceCreatorSection = document.getElementById('raceCreator');
+    const weeklyActionsSection = document.getElementById('weeklyActions');
     const deityCreationTab = document.getElementById('deityCreationTab');    
     const timelineTab = document.getElementById('timelineTab');
     const worldMapTab = document.getElementById('worldMapTab');
     const discussionBoardTab = document.getElementById('discussionBoardTab');
     const deityNameDisplay = document.getElementById('deityNameDisplay');
     const domainDisplay = document.getElementById('domainDisplay');
+    const deityCreationForm = document.getElementById('domainCreationForm');
 
-    // Assuming user is logged in
-const user = auth.currentUser;
-if (user) {
-    const deityData = {
-        name: deityName,  // Assuming you have some input for this
-        domain: deityDomain  // And this
-        // ... Add any other relevant details
-    };
-
-    const userDeityRef = database.ref('deities/' + user.uid);
-    userDeityRef.set(deityData);
-}
-
-    
-
-function hideDeityCreationTab() {
+    // Hide all tabs initially
     deityCreationTab.style.display = 'none';
-}
-
-function showDeityCreationTab() {
-    deityCreationTab.style.display = 'block';
-}
-    
-    raceCreatorTab.style.display = 'none';
-    weeklyActionsTab.style.display = 'none';
-    raceCreatorSection.style.display = 'none';
-    weeklyActionsSection.style.display = 'none';   
     raceCreatorTab.style.display = 'none';
     weeklyActionsTab.style.display = 'none';
     timelineTab.style.display = 'none';
     worldMapTab.style.display = 'none';
     discussionBoardTab.style.display = 'none';
-    
-// Firebase Authentication State Change Listener
+
     auth.onAuthStateChanged((user) => {
         if (user) {
             const deityRef = database.ref('deities/' + user.uid);
@@ -149,10 +83,90 @@ function showDeityCreationTab() {
             document.getElementById('logoutBtn').style.display = 'none';
         }
     });
+
+    // Deity Creator Form Submission
+    deityCreationForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const user = auth.currentUser;
+
+        if (user) {
+            const deityRef = database.ref('deities/' + user.uid);
+            deityRef.once('value').then(snapshot => {
+                if (snapshot.exists()) {
+                    alert("You have already created a deity. You cannot create another one.");
+                } else {
+                    const deityName = document.getElementById('deityName').value.trim();
+                    const playerName = document.getElementById('playerName').value.trim();
+                    const domainDropdown = document.getElementById('domainDropdown').value;
+
+                    deityRef.set({
+                        name: deityName,
+                        playerName: playerName,
+                        domain: domainDropdown
+                    }).then(() => {
+                        alert("Deity created successfully!");
+                        deityCreationTab.style.display = 'none';
+                        raceCreatorTab.style.display = 'none';
+                        weeklyActionsTab.style.display = 'block';
+                        timelineTab.style.display = 'block';
+                        worldMapTab.style.display = 'block';
+                        discussionBoardTab.style.display = 'block';
+
+                        deityNameDisplay.textContent = deityName;
+                        domainDisplay.textContent = domainDropdown;
+                    }).catch((error) => {
+                        console.error("Error creating deity: ", error);
+                        alert("There was an error creating your deity. Please try again.");
+                    });
+                }
+            }).catch((error) => {
+                console.error("Error checking deity: ", error);
+                alert("There was an error checking your deity status. Please try again.");
+            });
+        } else {
+            alert("You must be logged in to create a deity.");
+        }
+    });
 });
 
+    // Registration Logic
+    registerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
 
+        const email = registerEmail.value;
+        const password = registerPassword.value;
 
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((user) => {
+                console.log("User registered successfully", user);
+                // You might want to hide registration form and show user's personal content here
+            })
+            .catch((error) => {
+                console.error("Error registering user", error.message);
+            });
+    });
+
+    // Login Logic
+    loginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const email = loginEmail.value;
+        const password = loginPassword.value;
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then((user) => {
+                console.log("User logged in successfully", user);
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('registrationForm').style.display = 'none';
+                // Show the user's sections here
+                document.getElementById('characterPageDiv').style.display = 'block'; // example
+            })
+            .catch((error) => {
+                console.error("Error logging in", error.message);
+            });
+    });
+
+    // Race Creator Logic
     let remainingPoints = 100;
     let selectedCharacteristics = [];
 
@@ -198,56 +212,27 @@ function showDeityCreationTab() {
         pointsDisplay.textContent = remainingPoints;
     });
 
-
     raceCreationForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const raceName = raceNameInput.value.trim();  // Get the value and trim any white spaces
         if (!raceName) {
-        alert("Please provide a race name!");
-        return;
+            alert("Please provide a race name!");
+            return;
         }
         if (selectedCharacteristics.length === 0) {
             alert("You haven't selected any characteristics!");
             return;
         }
-                // Saving data to Firebase Realtime Database
+
         const userID = auth.currentUser.uid;
-        const userRaceRef = database.ref('races/' + userID);
-        const raceRef = database.ref('races');
-        const newRaceRef = raceRef.push();
-        newRaceRef.set({
+        const raceRef = database.ref('races/' + userID);
+        raceRef.set({
             name: raceName,  // Including the race name in the data being saved
             characteristics: selectedCharacteristics,
             pointsLeft: remainingPoints
         });
         alert("Race created!");
     });
-
-    // Deity Creator Logic
-const deityCreationForm = document.getElementById('domainCreationForm');
-
-deityCreationForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const user = firebase.auth().currentUser;
-
-    if(user){
-        // Saving deity to Firebase Realtime Database under the user's unique ID
-        const deityRef = database.ref('deities/' + user.uid);
-        
-        deityRef.set({
-            name: deityName,
-            playerName: playerName,
-            domain: domainDropdown
-        });
-
-        alert("Deity created!");
-    } else {
-        alert("Please login to create a deity.");
-    }
-});
-
-
 
     // Weekly Actions Logic
     const actionDropdown = document.getElementById('actionDropdown');
@@ -323,69 +308,74 @@ deityCreationForm.addEventListener('submit', (e) => {
 
         listItem.appendChild(removeBtn);
         selectedActionsList.appendChild(listItem);
-        
+    });
+
     weeklyActionsForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+        e.preventDefault();
 
-    const selectedActions = Array.from(selectedActionsList.children).map(li => li.textContent.replace(' X', ''));
+        const selectedActions = Array.from(selectedActionsList.children).map(li => li.textContent.replace(' X', ''));
 
-    if (selectedActions.length === 0) {
-        alert("No actions have been selected for this week!");
-        return;
+        if (selectedActions.length === 0) {
+            alert("No actions have been selected for this week!");
+            return;
+        }
+
+        // Saving data to Firebase Realtime Database
+        const userID = auth.currentUser.uid;
+        const actionsRef = database.ref('weeklyActions/' + userID);
+        actionsRef.set({
+            actions: selectedActions,
+            resources: resources
+        });
+
+        alert("Weekly actions saved!");
+    });
+
+    // Logout Logic
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+        auth.signOut().then(() => {
+            console.log('User signed out');
+            alert('You have been logged out.');
+            // Redirect or hide/show relevant content if needed
+            deityCreationTab.style.display = 'none';
+            raceCreatorTab.style.display = 'none';
+            weeklyActionsTab.style.display = 'none';
+            timelineTab.style.display = 'none';
+            worldMapTab.style.display = 'none';
+            discussionBoardTab.style.display = 'none';
+            document.getElementById('characterPageDiv').style.display = 'none';
+        }).catch((error) => {
+            console.error('Error signing out:', error);
+        });
+    });
+
+    // Action Tab Management
+    function openTab(tabName) {
+        let x = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
     }
 
-    // Saving data to Firebase Realtime Database
-    const userID = auth.currentUser.uid;
-    const userRaceRef = database.ref('races/' + userID);
-    const actionsRef = database.ref('weeklyActions');
-    const newActionsRef = actionsRef.push();
-    newActionsRef.set({
-        actions: selectedActions,
-        resources: resources
+    // Example of opening tabs based on login state
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            // Show appropriate tab based on whether deity exists
+            const deityRef = database.ref('deities/' + user.uid);
+            deityRef.once('value').then(snapshot => {
+                if (snapshot.exists()) {
+                    openTab('weeklyActions');
+                } else {
+                    openTab('deityCreator');
+                }
+            });
+        } else {
+            openTab('loginForm');
+        }
     });
 
-    alert("Weekly actions saved!");
+    // Initial tab state management (you can change as needed)
+    openTab('loginForm');
 });
-
-    });
-    
-    // Registration Logic
-registerBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const email = registerEmail.value;
-    const password = registerPassword.value;
-
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((user) => {
-            console.log("User registered successfully", user);
-            // You might want to hide registration form and show user's personal content here
-        })
-        .catch((error) => {
-            console.error("Error registering user", error.message);
-        });
-});
-
-// Login Logic
-loginBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const email = loginEmail.value;
-    const password = loginPassword.value;
-
-    auth.signInWithEmailAndPassword(email, password)
-        .then((user) => {
-    console.log("User logged in successfully", user);
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('registrationForm').style.display = 'none';
-    // Show the user's sections here
-    document.getElementById('characterPageDiv').style.display = 'block'; // example
-})
-        .catch((error) => {
-            console.error("Error logging in", error.message);
-        });
-});
-});
-
-
 
