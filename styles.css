@@ -1,7 +1,7 @@
 /* Base styling */
 body, html {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Cinzel', serif; /* Fantasy-themed font */
+    background-color: #2b2b2b;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -9,215 +9,144 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* stack the forms vertically */
-    gap: 20px; /* creates space between elements */
-    background-color: rgba(255, 255, 255, 0); /* 0.7 is the alpha/opacity value */
+    flex-direction: column;
+    background-image: url('images/fantasy-background.jpg'); /* Replace with a fantasy-themed image */
+    background-size: cover;
+    background-attachment: fixed;
+    color: #f5f5f5;
 }
 
-html {
-    background-image: url('images/getimg_ai_img-fFz0mcHZeSDLoGVQO2473.png'); /* Replace with your image path */
-    background-size: cover; /* This will cover the entire viewport */
-    background-repeat: no-repeat; /* This will prevent the image from repeating */
-    background-attachment: inherit; /* This will ensure the background stays in place while scrolling */
+h1, h2, h3 {
+    font-family: 'Cinzel Decorative', serif; /* Fancy, decorative font */
+    color: #ddb55d; /* Goldish color for headings */
+    text-shadow: 2px 2px 5px #000000;
 }
 
 .container {
-    width: 400px;
-    background-color: #fff;
+    width: 500px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8); /* Glowing shadow */
     margin: 20px auto;
-}
-
-h2, h3 {
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-p {
-    margin-bottom: 15px;
+    border: 2px solid #ddb55d; /* Goldish border */
 }
 
 label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
+    color: #fff;
 }
 
 /* Form & Input Styles */
-input[type="text"], select {
-    width: 90%;
-    padding: 8px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddb55d; /* Goldish border */
+    border-radius: 5px;
+    background-color: #4a4a4a;
+    color: #f5f5f5;
 }
 
-input[type="submit"] {
-    padding: 8px 15px;
+input[type="submit"], button {
+    padding: 10px 20px;
     border: none;
-    background-color: #007BFF;
-    color: #fff;
-    border-radius: 4px;
+    background-color: #7d5a4a; /* Wood-like color */
+    color: #f5f5f5;
+    border-radius: 5px;
     cursor: pointer;
+    font-family: 'Cinzel Decorative', serif;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.8); /* Glowing shadow */
 }
 
 input[type="submit"]:hover, button:hover {
-    background-color: #0056b3;
-}
-
-/* Buttons */
-button {
-    background-color: #007BFF;
-    color: #ffffff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-/* Resource summary styling */
-.resource-summary p {
-    display: inline-block;
-    background-color: #f7f7f7;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
-/* Action dropdown & info */
-#actionDropdown {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-.action-info {
-    background-color: #f7f7f7;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    line-height: 1.6; /* adjust for better line spacing */
-}
-
-/* Selected actions list */
-#selectedActionsList {
-    list-style-type: none;
-    padding: 0;
-}
-
-#selectedActionsList li {
-    background-color: #e9e9e9;
-    padding: 8px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-#selectedActionsList li span {
-    background-color: #e9e9e9;
-    padding: 2px 5px;
-    border-radius: 50%;
-    font-weight: bold;
-}
-
-.points-display, .domain-display {
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.characteristic-description, .description {
-    margin-bottom: 20px;
-    padding: 8px;
-    background-color: #f1f1f1;
-    border-radius: 4px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    padding: 6px 0;
-    border-bottom: 1px solid #eaeaea;
-}
-
-li:last-child {
-    border-bottom: none;
+    background-color: #ddb55d; /* Glowing gold effect */
 }
 
 /* Tab Styles */
 .tab-container {
     display: flex;
     justify-content: space-around;
-    background-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 10px 0;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;  /* ensures the tabs are on top of other content */
-    background-color: rgba(255, 255, 255, 0); /* 0.7 is the alpha/opacity value */
+    border-bottom: 1px solid #ddb55d;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 .tab {
-    padding: 10px 20px;
+    padding: 15px 25px;
     cursor: pointer;
+    font-family: 'Cinzel Decorative', serif;
+    color: #f5f5f5;
+    transition: background-color 0.3s;
+}
+
+.tab:hover {
+    background-color: #7d5a4a;
 }
 
 .tab-content {
     display: none;
-    max-width: 600px;
-    margin: 60px auto 20px;  /* 60px top margin to account for the fixed tab container */
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100% - 60px);  /* Subtracting height of the tab container */
-}
-
-#registrationForm, #loginForm {
-    background-color: #fff;
+    max-width: 800px;
+    margin: 100px auto 20px;
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center; /* center the text and controls within the form */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    border: 2px solid #ddb55d;
 }
 
-input[type="text"], input[type="password"] {
-    display: block;
+/* Action dropdown & info */
+#actionDropdown, #domainDropdown {
     width: 100%;
     padding: 10px;
-    margin-top: 10px; /* space out the elements */
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    margin-bottom: 20px;
+    background-color: #4a4a4a;
+    border: 1px solid #ddb55d;
+    color: #f5f5f5;
+    border-radius: 5px;
 }
 
-button {
-    display: block;
-    margin-top: 20px;
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.action-info {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #ddb55d;
 }
 
-button:hover {
-    background-color: #0056b3;
+#selectedActionsList li {
+    background-color: rgba(125, 90, 74, 0.7);
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    color: #f5f5f5;
+}
+
+#selectedActionsList li span {
+    background-color: rgba(125, 90, 74, 0.7);
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* Resource summary styling */
+.resource-summary p {
+    display: inline-block;
+    background-color: rgba(125, 90, 74, 0.7);
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: #f5f5f5;
 }
