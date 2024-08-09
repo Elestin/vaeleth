@@ -1,3 +1,4 @@
+
 // Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyA63cEw6eNLIrgM-85otGF2lzzOgbT6Po0",
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     worldMapTab.style.display = 'none';
     discussionBoardTab.style.display = 'none';
 
-    // Function to handle login
+        // Function to handle login
     loginBtn.addEventListener('click', (e) => {
         e.preventDefault();
         const email = document.getElementById('loginEmail').value;
@@ -120,52 +121,55 @@ document.addEventListener('DOMContentLoaded', function() {
         registrationForm.style.display = 'none';
         loginForm.style.display = 'block';
     });
+    
 
-    // Show the login form by default
+        // Show the login form by default
     loginForm.style.display = 'block';
 
-    function checkUserState(user) {
-        const deityRef = database.ref('deities/' + user.uid);
-        deityRef.once('value').then(snapshot => {
-            if (snapshot.exists()) {
-                const deityData = snapshot.val();
-                deityNameDisplay.textContent = deityData.name;
-                domainDisplay.textContent = deityData.domain;
 
-                // Check if the user has a race
-                const raceRef = database.ref('races/' + user.uid);
-                raceRef.once('value').then(raceSnapshot => {
-                    if (raceSnapshot.exists()) {
-                        // Race exists, show Weekly Actions and hide others
-                        openTab('weeklyActions');
-                        weeklyActionsTab.style.display = 'block';
-                        timelineTab.style.display = 'block';
-                        worldMapTab.style.display = 'block';
-                        discussionBoardTab.style.display = 'block';
-                        deityCreationTab.style.display = 'none';
-                        raceCreatorTab.style.display = 'none';
-                    } else {
-                        // No race, show Race Creator and hide others
-                        openTab('raceCreator');
-                        raceCreatorTab.style.display = 'block';
-                        weeklyActionsTab.style.display = 'none';
-                        timelineTab.style.display = 'none';
-                        worldMapTab.style.display = 'none';
-                        discussionBoardTab.style.display = 'none';
-                    }
-                });
-            } else {
-                // No deity, show Deity Creator and hide others
-                openTab('deityCreator');
-                deityCreationTab.style.display = 'block';
-                raceCreatorTab.style.display = 'none';
-                weeklyActionsTab.style.display = 'none';
-                timelineTab.style.display = 'none';
-                worldMapTab.style.display = 'none';
-                discussionBoardTab.style.display = 'none';
-            }
-        });
-    }
+
+function checkUserState(user) {
+    const deityRef = database.ref('deities/' + user.uid);
+    deityRef.once('value').then(snapshot => {
+        if (snapshot.exists()) {
+            const deityData = snapshot.val();
+            deityNameDisplay.textContent = deityData.name;
+            domainDisplay.textContent = deityData.domain;
+
+            // Check if the user has a race
+            const raceRef = database.ref('races/' + user.uid);
+            raceRef.once('value').then(raceSnapshot => {
+                if (raceSnapshot.exists()) {
+                    // Race exists, show Weekly Actions and hide others
+                    openTab('weeklyActions');
+                    weeklyActionsTab.style.display = 'block';
+                    timelineTab.style.display = 'block';
+                    worldMapTab.style.display = 'block';
+                    discussionBoardTab.style.display = 'block';
+                    deityCreationTab.style.display = 'none';
+                    raceCreatorTab.style.display = 'none';
+                } else {
+                    // No race, show Race Creator and hide others
+                    openTab('raceCreator');
+                    raceCreatorTab.style.display = 'block';
+                    weeklyActionsTab.style.display = 'none';
+                    timelineTab.style.display = 'none';
+                    worldMapTab.style.display = 'none';
+                    discussionBoardTab.style.display = 'none';
+                }
+            });
+        } else {
+            // No deity, show Deity Creator and hide others
+            openTab('deityCreator');
+            deityCreationTab.style.display = 'block';
+            raceCreatorTab.style.display = 'none';
+            weeklyActionsTab.style.display = 'none';
+            timelineTab.style.display = 'none';
+            worldMapTab.style.display = 'none';
+            discussionBoardTab.style.display = 'none';
+        }
+    });
+}
 
     // Authentication State Change Listener
     auth.onAuthStateChanged((user) => {
@@ -193,7 +197,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }).catch((error) => {
             console.error('Error signing out:', error);
         });
-    });
+    }); 
+
 
 // Deity Creator Form Submission
 deityCreationForm.addEventListener('submit', (e) => {
@@ -232,51 +237,89 @@ deityCreationForm.addEventListener('submit', (e) => {
     }
 });
 
-// Race Creator Logic
-let remainingPoints = 100;
-let selectedCharacteristics = [];
 
-characteristicDropdown.addEventListener('change', (e) => {
-    const selectedOption = e.target.options[e.target.selectedIndex];
-    const description = selectedOption.getAttribute('data-description');
-    characteristicDescription.textContent = description ? description : "Select a characteristic to see its description.";
-});
+    // Registration Logic
+    registerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
 
-addCharacteristicBtn.addEventListener('click', (e) => {
+        const email = registerEmail.value;
+        const password = registerPassword.value;
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((user) => {
+                console.log("User registered successfully", user);
+                // You might want to hide registration form and show user's personal content here
+            })
+            .catch((error) => {
+                console.error("Error registering user", error.message);
+            });
+    });
+
+    // Login Logic
+loginBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    const selectedOption = characteristicDropdown.options[characteristicDropdown.selectedIndex];
-    const characteristicValue = selectedOption.value;
-    const cost = parseInt(selectedOption.getAttribute('data-cost'));
 
-    if (remainingPoints - cost >= 0 && !selectedCharacteristics.includes(characteristicValue)) {
-        remainingPoints -= cost;
-        selectedCharacteristics.push(characteristicValue);
-        
-        const listItem = document.createElement('li');
-        listItem.textContent = selectedOption.textContent;
+    const email = loginEmail.value;
+    const password = loginPassword.value;
 
-        // Removal logic similar to Weekly Actions
-        const removeBtn = document.createElement('span');
-        removeBtn.innerHTML = ' X';
-        removeBtn.style.cursor = 'pointer';
-        removeBtn.style.color = 'red';
-        removeBtn.style.marginLeft = '10px';
-        removeBtn.addEventListener('click', function() {
-            remainingPoints += cost;
-            selectedCharacteristics = selectedCharacteristics.filter(item => item !== characteristicValue);
-            pointsDisplay.textContent = remainingPoints;
-            listItem.remove();
+    auth.signInWithEmailAndPassword(email, password)
+        .then((user) => {
+            console.log("User logged in successfully", user);
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registrationForm').style.display = 'none';
+            checkUserState(user); // Check user state after login
+        })
+        .catch((error) => {
+            console.error("Error logging in", error.message);
         });
-
-        listItem.appendChild(removeBtn);
-        selectedCharacteristicsList.appendChild(listItem);
-    } else if (selectedCharacteristics.includes(characteristicValue)) {
-        alert("This characteristic has already been selected.");
-    } else {
-        alert("Not enough points for this characteristic.");
-    }
-    pointsDisplay.textContent = remainingPoints;
 });
+
+
+    // Race Creator Logic
+    let remainingPoints = 100;
+    let selectedCharacteristics = [];
+
+    characteristicDropdown.addEventListener('change', (e) => {
+        const selectedOption = e.target.options[e.target.selectedIndex];
+        const description = selectedOption.getAttribute('data-description');
+        characteristicDescription.textContent = description ? description : "Select a characteristic to see its description.";
+    });
+
+    addCharacteristicBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedOption = characteristicDropdown.options[characteristicDropdown.selectedIndex];
+        const characteristicValue = selectedOption.value;
+        const cost = parseInt(selectedOption.getAttribute('data-cost'));
+
+        if (remainingPoints - cost >= 0 && !selectedCharacteristics.includes(characteristicValue)) {
+            remainingPoints -= cost;
+            selectedCharacteristics.push(characteristicValue);
+            
+            const listItem = document.createElement('li');
+            listItem.textContent = selectedOption.textContent;
+
+            // Removal logic similar to Weekly Actions
+            const removeBtn = document.createElement('span');
+            removeBtn.innerHTML = ' X';
+            removeBtn.style.cursor = 'pointer';
+            removeBtn.style.color = 'red';
+            removeBtn.style.marginLeft = '10px';
+            removeBtn.addEventListener('click', function() {
+                remainingPoints += cost;
+                selectedCharacteristics = selectedCharacteristics.filter(item => item !== characteristicValue);
+                pointsDisplay.textContent = remainingPoints;
+                listItem.remove();
+            });
+
+            listItem.appendChild(removeBtn);
+            selectedCharacteristicsList.appendChild(listItem);
+        } else if (selectedCharacteristics.includes(characteristicValue)) {
+            alert("This characteristic has already been selected.");
+        } else {
+            alert("Not enough points for this characteristic.");
+        }
+        pointsDisplay.textContent = remainingPoints;
+    });
 
 raceCreationForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -314,16 +357,17 @@ raceCreationForm.addEventListener('submit', (e) => {
     });
 });
 
-// Logout Logic
-logoutBtn.addEventListener('click', () => {
-    auth.signOut().then(() => {
-        console.log('User signed out');
-        alert('You have been logged out.');
-        document.getElementById('authContainer').style.display = 'block';
-        loginForm.style.display = 'block';
-        registrationForm.style.display = 'none';
-        logoutBtn.style.display = 'none';
-    }).catch((error) => {
-        console.error('Error signing out:', error);
+
+
+
+    // Logout Logic
+    logoutBtn.addEventListener('click', () => {
+        auth.signOut().then(() => {
+            console.log('User signed out');
+            alert('You have been logged out.');
+            // Redirect or hide/show relevant content if needed
+        }).catch((error) => {
+            console.error('Error signing out:', error);
+        });
     });
 });
