@@ -1,0 +1,182 @@
+{
+  "actions": [
+    {
+      "id": "exploration",
+      "name": "Exploration",
+      "description": "Explore new territories and discover resources, ancient ruins, or potential settlements.",
+      "costs": {
+        "action": 2,
+        "wealth": 1
+      },
+      "outcomes": [
+        "Discover new resource deposits",
+        "Find ancient ruins with magical artifacts",
+        "Encounter neutral settlements for trade",
+        "Uncover hostile territory requiring military action"
+      ]
+    },
+    {
+      "id": "buildStructure",
+      "name": "Build Structure",
+      "description": "Construct buildings that generate resources, provide defensive benefits, or enhance capabilities.",
+      "costs": {
+        "action": 3,
+        "wealth": 5
+      },
+      "outcomes": [
+        "Farms increase wealth generation",
+        "Temples boost magic points",
+        "Fortresses improve defensive capabilities",
+        "Markets enhance trade opportunities"
+      ]
+    },
+    {
+      "id": "conscription",
+      "name": "Conscription",
+      "description": "Raise armies from your population to defend territory or expand influence.",
+      "costs": {
+        "action": 1,
+        "wealth": 3,
+        "command": 1
+      },
+      "outcomes": [
+        "Raise militia units for defense",
+        "Train elite forces for special operations",
+        "Mobilize population for large campaigns"
+      ]
+    },
+    {
+      "id": "moveArmy",
+      "name": "Move Army",
+      "description": "Deploy military forces across the world map for conquest, defense, or exploration.",
+      "costs": {
+        "action": 2,
+        "wealth": 2,
+        "command": 2
+      },
+      "outcomes": [
+        "Successful territorial expansion",
+        "Defensive positioning against threats",
+        "Discovery of strategic locations"
+      ]
+    },
+    {
+      "id": "spying",
+      "name": "Spying",
+      "description": "Gather intelligence on other players, discover their plans, or sabotage their operations.",
+      "costs": {
+        "action": 2,
+        "influence": 2
+      },
+      "outcomes": [
+        "Learn about enemy troop movements",
+        "Discover resource locations",
+        "Steal technological advances",
+        "Spread disinformation"
+      ]
+    },
+    {
+      "id": "repairHeal",
+      "name": "Repair & Heal",
+      "description": "Restore damaged structures and heal wounded units after conflicts or natural disasters.",
+      "costs": {
+        "action": 1,
+        "wealth": 4
+      },
+      "outcomes": [
+        "Restore damaged buildings to full capacity",
+        "Heal wounded military units",
+        "Repair infrastructure after disasters"
+      ]
+    },
+    {
+      "id": "sabotage",
+      "name": "Sabotage",
+      "description": "Disrupt enemy resources, destroy structures, or weaken military forces through covert operations.",
+      "costs": {
+        "action": 3,
+        "influence": 3,
+        "magic": 1
+      },
+      "outcomes": [
+        "Destroy enemy resource production",
+        "Weaken enemy military units",
+        "Cause unrest in enemy territories"
+      ]
+    },
+    {
+      "id": "socialDevelopment",
+      "name": "Social Development",
+      "description": "Improve society through education, culture, and governance to increase efficiency and happiness.",
+      "costs": {
+        "action": 2,
+        "wealth": 2,
+        "influence": 1
+      },
+      "outcomes": [
+        "Increase overall resource generation",
+        "Improve population loyalty",
+        "Unlock new technologies or capabilities"
+      ]
+    },
+    {
+      "id": "researchTech",
+      "name": "Research Technology",
+      "description": "Advance magical and technological capabilities to unlock new actions and improve existing ones.",
+      "costs": {
+        "action": 3,
+        "magic": 2
+      },
+      "outcomes": [
+        "Unlock advanced military units",
+        "Develop new magical abilities",
+        "Improve resource efficiency",
+        "Discover powerful artifacts"
+      ]
+    },
+    {
+      "id": "uproar",
+      "name": "Incite Uproar",
+      "description": "Cause or suppress revolts and social unrest in your own or enemy territories.",
+      "costs": {
+        "action": 2,
+        "influence": 4
+      },
+      "outcomes": [
+        "Destabilize enemy regions",
+        "Suppress internal dissent",
+        "Rally population for major campaigns"
+      ]
+    },
+    {
+      "id": "buildSiege",
+      "name": "Build Siege Weapons",
+      "description": "Construct catapults, ballistae, and other siege equipment to break enemy fortifications.",
+      "costs": {
+        "action": 4,
+        "wealth": 5,
+        "command": 1
+      },
+      "outcomes": [
+        "Enable assault on fortified positions",
+        "Increase effectiveness of military campaigns",
+        "Intimidate enemies into surrender"
+      ]
+    },
+    {
+      "id": "tradeRoute",
+      "name": "Establish Trade Route",
+      "description": "Create economic connections with other players or neutral cities for mutual benefit.",
+      "costs": {
+        "action": 2,
+        "wealth": 3
+      },
+      "outcomes": [
+        "Steady income from trade agreements",
+        "Access to rare resources",
+        "Diplomatic relationships with other players",
+        "Cultural exchange and technology sharing"
+      ]
+    }
+  ]
+}

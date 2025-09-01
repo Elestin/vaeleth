@@ -1,0 +1,254 @@
+{
+  "complete-game": {
+    "id": "complete-game",
+    "title": "Welcome to Vaeleth",
+    "description": "Learn to become a divine ruler of a fantasy realm",
+    "steps": [
+      {
+        "id": "welcome",
+        "title": "Welcome to Vaeleth",
+        "content": "Welcome, aspiring deity! In Vaeleth, you'll create a god, design a fantasy race, and shape a persistent world through strategic actions. Let's begin your divine journey.",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": true,
+        "overlay": true
+      },
+      {
+        "id": "deity-intro",
+        "title": "Create Your Deity",
+        "content": "Every great civilization needs a divine ruler. You'll choose your name, domain, and divine powers. Your domain influences your strengths in different actions.",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": true,
+        "overlay": true
+      },
+      {
+        "id": "deity-name",
+        "title": "Choose Your Divine Name",
+        "content": "Enter a name that will strike awe into the hearts of mortals. This will be how other players know you.",
+        "target": "#deityName",
+        "position": "bottom",
+        "action": "input",
+        "nextTrigger": "custom",
+        "skippable": false,
+        "highlightElement": true
+      },
+      {
+        "id": "deity-domain",
+        "title": "Select Your Domain",
+        "content": "Your domain grants special bonuses to certain actions. Fire excels at destruction, Nature at growth, Knowledge at research, etc.",
+        "target": "#domainDropdown",
+        "position": "bottom",
+        "action": "click",
+        "nextTrigger": "custom",
+        "skippable": false,
+        "highlightElement": true
+      },
+      {
+        "id": "deity-submit",
+        "title": "Ascend to Godhood",
+        "content": "Click 'Ascend' to confirm your divine identity and begin your reign over Vaeleth.",
+        "target": "button[type=\"submit\"]",
+        "position": "top",
+        "action": "click",
+        "nextTrigger": "custom",
+        "skippable": false,
+        "highlightElement": true
+      },
+      {
+        "id": "race-intro",
+        "title": "Design Your People",
+        "content": "Every deity needs followers! Now you'll create a fantasy race with unique traits. You have 100 points to spend on characteristics.",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": true,
+        "overlay": true
+      },
+      {
+        "id": "race-name",
+        "title": "Name Your Race",
+        "content": "Give your people a name that reflects their nature and your divine influence.",
+        "target": "#raceName",
+        "position": "bottom",
+        "action": "input",
+        "nextTrigger": "custom",
+        "skippable": false,
+        "highlightElement": true
+      },
+      {
+        "id": "race-characteristics",
+        "title": "Add Characteristics",
+        "content": "Choose traits for your race. Positive traits cost points, negative traits give you points to spend elsewhere. Try adding 'Swift' for movement bonuses.",
+        "target": "#characteristicDropdown",
+        "position": "bottom",
+        "action": "click",
+        "nextTrigger": "custom",
+        "skippable": false,
+        "highlightElement": true
+      },
+      {
+        "id": "race-balance",
+        "title": "Balance Your Race",
+        "content": "Notice how your remaining points change. You can add negative traits to get more points for powerful positive ones. Create a race that fits your strategy!",
+        "target": "#points",
+        "position": "left",
+        "nextTrigger": "click",
+        "skippable": true,
+        "highlightElement": true
+      },
+      {
+        "id": "race-submit",
+        "title": "Bring Your Race to Life",
+        "content": "When satisfied with your race design, click 'Create' to populate your realm with these beings.",
+        "target": "button[type=\"submit\"]",
+        "position": "top",
+        "action": "click",
+        "nextTrigger": "custom",
+        "skippable": false,
+        "highlightElement": true
+      },
+      {
+        "id": "weekly-actions-intro",
+        "title": "Rule Your Realm",
+        "content": "Welcome to the heart of Vaeleth! Here you'll spend resources on actions that shape the world. Every decision matters.",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": true,
+        "overlay": true
+      },
+      {
+        "id": "resources-overview",
+        "title": "Your Divine Resources",
+        "content": "You have 5 types of points: Action (general activities), Wealth (construction), Magic (research), Influence (diplomacy), and Command (military).",
+        "target": ".resource-summary",
+        "position": "bottom",
+        "nextTrigger": "click",
+        "skippable": true,
+        "highlightElement": true
+      },
+      {
+        "id": "first-action",
+        "title": "Take Your First Action",
+        "content": "Try selecting 'Exploration' to discover new territories and resources. Each action has costs and potential outcomes.",
+        "target": "#actionDropdown",
+        "position": "bottom",
+        "action": "click",
+        "nextTrigger": "custom",
+        "skippable": false,
+        "highlightElement": true
+      },
+      {
+        "id": "add-action",
+        "title": "Confirm Your Action",
+        "content": "Click 'Confirm Action' to add Exploration to your weekly plans. You can add multiple actions if you have enough resources.",
+        "target": "#addActionBtn",
+        "position": "top",
+        "action": "click",
+        "nextTrigger": "custom",
+        "skippable": false,
+        "highlightElement": true
+      },
+      {
+        "id": "world-map-intro",
+        "title": "Explore the World Map",
+        "content": "The World Map shows territories you can discover, claim, and build upon. Let's take a look at your domain.",
+        "target": "#worldMapTab",
+        "position": "bottom",
+        "action": "click",
+        "nextTrigger": "custom",
+        "skippable": false,
+        "highlightElement": true
+      },
+      {
+        "id": "territory-interaction",
+        "title": "Interact with Territories",
+        "content": "Click on territories to see details and take actions. You can scout unknown lands, claim territories, or build structures in ones you control.",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": true,
+        "overlay": true
+      },
+      {
+        "id": "chat-system",
+        "title": "Divine Communication",
+        "content": "The Discussion Board lets you communicate with other deities. Form alliances, declare wars, or simply engage in divine discourse.",
+        "target": "#discussionBoardTab",
+        "position": "bottom",
+        "action": "click",
+        "nextTrigger": "custom",
+        "skippable": true,
+        "highlightElement": true
+      },
+      {
+        "id": "timeline-history",
+        "title": "Chronicle of Events",
+        "content": "The Timeline records all major events in Vaeleth. Your actions and those of other players create a persistent history.",
+        "target": "#timelineTab",
+        "position": "bottom",
+        "action": "click",
+        "nextTrigger": "custom",
+        "skippable": true,
+        "highlightElement": true
+      },
+      {
+        "id": "tutorial-complete",
+        "title": "Your Divine Reign Begins",
+        "content": "Congratulations! You now know the basics of Vaeleth. Explore, expand, and engage with other players to shape this fantasy world. Your legend awaits!",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": false,
+        "overlay": true
+      }
+    ]
+  },
+  "deity-creation": {
+    "id": "deity-creation",
+    "title": "Create Your Deity",
+    "description": "Learn to design your divine identity",
+    "steps": [
+      {
+        "id": "deity-basics",
+        "title": "Divine Identity",
+        "content": "Choose your player name (your real identity) and deity name (your divine persona). Other players will see both.",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": true,
+        "overlay": true
+      },
+      {
+        "id": "domain-power",
+        "title": "Domain Powers",
+        "content": "Your domain affects your success rates. Fire excels at destruction and forging, Water at exploration and healing, Knowledge at research, etc.",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": true,
+        "overlay": true
+      }
+    ]
+  },
+  "race-creation": {
+    "id": "race-creation",
+    "title": "Design Your Fantasy Race",
+    "description": "Create unique beings to serve your will",
+    "steps": [
+      {
+        "id": "point-system",
+        "title": "100-Point System",
+        "content": "You have 100 points to spend. Positive traits cost points, negative traits give points back. Plan carefully!",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": true,
+        "overlay": true
+      },
+      {
+        "id": "trait-strategy",
+        "title": "Strategic Trait Selection",
+        "content": "Consider your deity's domain. A Fire deity might want heat-resistant races, while Nature deities benefit from forest-dwelling traits.",
+        "position": "center",
+        "nextTrigger": "click",
+        "skippable": true,
+        "overlay": true
+      }
+    ]
+  }
+}

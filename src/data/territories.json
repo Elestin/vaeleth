@@ -1,0 +1,160 @@
+{
+  "territories": {
+    "crystal_peaks": {
+      "id": "crystal_peaks",
+      "name": "Crystal Peaks",
+      "type": "mountain",
+      "position": { "x": 20, "y": 15 },
+      "size": "large",
+      "resources": { "magic": 8, "wealth": 3 },
+      "defenseValue": 85,
+      "population": 150,
+      "buildings": [],
+      "adjacentTerritories": ["misty_valley", "dragon_spine"],
+      "discoveredBy": []
+    },
+    "misty_valley": {
+      "id": "misty_valley",
+      "name": "Misty Valley",
+      "type": "forest",
+      "position": { "x": 35, "y": 25 },
+      "size": "medium",
+      "resources": { "magic": 5, "influence": 4 },
+      "defenseValue": 60,
+      "population": 300,
+      "buildings": [],
+      "adjacentTerritories": ["crystal_peaks", "whispering_woods", "golden_plains"],
+      "discoveredBy": []
+    },
+    "whispering_woods": {
+      "id": "whispering_woods",
+      "name": "Whispering Woods",
+      "type": "forest",
+      "position": { "x": 45, "y": 35 },
+      "size": "large",
+      "resources": { "magic": 6, "influence": 6 },
+      "defenseValue": 70,
+      "population": 400,
+      "buildings": [],
+      "adjacentTerritories": ["misty_valley", "golden_plains", "silver_lake"],
+      "discoveredBy": []
+    },
+    "golden_plains": {
+      "id": "golden_plains",
+      "name": "Golden Plains",
+      "type": "plains",
+      "position": { "x": 50, "y": 50 },
+      "size": "large",
+      "resources": { "wealth": 10, "influence": 5 },
+      "defenseValue": 40,
+      "population": 800,
+      "buildings": [],
+      "adjacentTerritories": ["misty_valley", "whispering_woods", "silver_lake", "iron_hills", "starting_realm"],
+      "discoveredBy": []
+    },
+    "starting_realm": {
+      "id": "starting_realm",
+      "name": "Divine Nexus",
+      "type": "plains",
+      "position": { "x": 50, "y": 60 },
+      "size": "medium",
+      "resources": { "wealth": 5, "magic": 5, "influence": 5 },
+      "defenseValue": 100,
+      "population": 500,
+      "buildings": [
+        {
+          "id": "nexus_temple",
+          "type": "temple",
+          "name": "Nexus Temple",
+          "level": 1,
+          "effects": {
+            "resourceGeneration": { "magic": 2, "influence": 1 },
+            "defenseBonus": 20
+          },
+          "constructedAt": 0,
+          "constructedBy": "system"
+        }
+      ],
+      "adjacentTerritories": ["golden_plains", "iron_hills", "silver_lake"],
+      "discoveredBy": []
+    },
+    "silver_lake": {
+      "id": "silver_lake",
+      "name": "Silver Lake",
+      "type": "water",
+      "position": { "x": 65, "y": 45 },
+      "size": "medium",
+      "resources": { "magic": 7, "wealth": 4 },
+      "defenseValue": 30,
+      "population": 200,
+      "buildings": [],
+      "adjacentTerritories": ["whispering_woods", "golden_plains", "starting_realm", "eastern_marshes"],
+      "discoveredBy": []
+    },
+    "iron_hills": {
+      "id": "iron_hills",
+      "name": "Iron Hills",
+      "type": "mountain",
+      "position": { "x": 60, "y": 70 },
+      "size": "medium",
+      "resources": { "wealth": 12, "influence": 2 },
+      "defenseValue": 80,
+      "population": 250,
+      "buildings": [],
+      "adjacentTerritories": ["golden_plains", "starting_realm", "burned_wastes"],
+      "discoveredBy": []
+    },
+    "eastern_marshes": {
+      "id": "eastern_marshes",
+      "name": "Eastern Marshes",
+      "type": "water",
+      "position": { "x": 80, "y": 40 },
+      "size": "large",
+      "resources": { "magic": 9, "influence": 3 },
+      "defenseValue": 25,
+      "population": 180,
+      "buildings": [],
+      "adjacentTerritories": ["silver_lake", "sunken_city"],
+      "discoveredBy": []
+    },
+    "burned_wastes": {
+      "id": "burned_wastes",
+      "name": "Burned Wastes",
+      "type": "desert",
+      "position": { "x": 70, "y": 85 },
+      "size": "large",
+      "resources": { "wealth": 3, "magic": 15 },
+      "defenseValue": 20,
+      "population": 50,
+      "buildings": [],
+      "adjacentTerritories": ["iron_hills", "sunken_city"],
+      "discoveredBy": []
+    },
+    "sunken_city": {
+      "id": "sunken_city",
+      "name": "Sunken City",
+      "type": "ruins",
+      "position": { "x": 85, "y": 65 },
+      "size": "medium",
+      "resources": { "magic": 20, "wealth": 8 },
+      "defenseValue": 15,
+      "population": 0,
+      "buildings": [],
+      "adjacentTerritories": ["eastern_marshes", "burned_wastes", "dragon_spine"],
+      "discoveredBy": []
+    },
+    "dragon_spine": {
+      "id": "dragon_spine",
+      "name": "Dragon's Spine",
+      "type": "mountain",
+      "position": { "x": 15, "y": 75 },
+      "size": "large",
+      "resources": { "wealth": 6, "magic": 12 },
+      "defenseValue": 95,
+      "population": 100,
+      "buildings": [],
+      "adjacentTerritories": ["crystal_peaks", "sunken_city"],
+      "discoveredBy": []
+    }
+  }
+}

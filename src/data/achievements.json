@@ -1,0 +1,385 @@
+{
+  "achievements": [
+    {
+      "id": "first_steps",
+      "name": "Divine Awakening",
+      "description": "Create your first deity and begin your reign over Vaeleth",
+      "icon": "Crown",
+      "category": "progression",
+      "rarity": "common",
+      "requirements": {
+        "type": "milestone",
+        "target": "deity_created",
+        "value": 1
+      },
+      "rewards": {
+        "experience": 100,
+        "title": "The Awakened"
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "race_creator",
+      "name": "Genesis",
+      "description": "Design your first fantasy race with unique characteristics",
+      "icon": "Users",
+      "category": "progression",
+      "rarity": "common",
+      "requirements": {
+        "type": "milestone",
+        "target": "race_created",
+        "value": 1
+      },
+      "rewards": {
+        "experience": 150,
+        "title": "The Creator",
+        "resources": {
+          "influence": 5
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "first_action",
+      "name": "Divine Intervention",
+      "description": "Perform your first weekly action",
+      "icon": "Zap",
+      "category": "progression",
+      "rarity": "common",
+      "requirements": {
+        "type": "count",
+        "target": "actions_performed",
+        "value": 1
+      },
+      "rewards": {
+        "experience": 50,
+        "resources": {
+          "action": 1
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "explorer",
+      "name": "Realm Walker",
+      "description": "Discover 5 different territories",
+      "icon": "MapPin",
+      "category": "exploration",
+      "rarity": "common",
+      "requirements": {
+        "type": "count",
+        "target": "territories_discovered",
+        "value": 5
+      },
+      "rewards": {
+        "experience": 200,
+        "title": "Explorer",
+        "resources": {
+          "wealth": 10
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "master_explorer",
+      "name": "Cartographer Supreme",
+      "description": "Discover all territories in Vaeleth",
+      "icon": "Map",
+      "category": "exploration",
+      "rarity": "rare",
+      "requirements": {
+        "type": "count",
+        "target": "territories_discovered",
+        "value": 11
+      },
+      "rewards": {
+        "experience": 1000,
+        "title": "Master of the Realm",
+        "resources": {
+          "wealth": 50,
+          "influence": 25
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "first_territory",
+      "name": "Territorial Expansion",
+      "description": "Claim your first territory beyond the starting realm",
+      "icon": "Flag",
+      "category": "military",
+      "rarity": "common",
+      "requirements": {
+        "type": "count",
+        "target": "territories_claimed",
+        "value": 1
+      },
+      "rewards": {
+        "experience": 300,
+        "title": "Conqueror",
+        "resources": {
+          "command": 5
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "empire_builder",
+      "name": "Divine Empire",
+      "description": "Control 5 or more territories simultaneously",
+      "icon": "Castle",
+      "category": "military",
+      "rarity": "uncommon",
+      "requirements": {
+        "type": "count",
+        "target": "territories_controlled",
+        "value": 5
+      },
+      "rewards": {
+        "experience": 750,
+        "title": "Emperor/Empress",
+        "resources": {
+          "wealth": 25,
+          "command": 15
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "architect",
+      "name": "Divine Architect",
+      "description": "Construct 10 buildings across your territories",
+      "icon": "Hammer",
+      "category": "construction",
+      "rarity": "common",
+      "requirements": {
+        "type": "count",
+        "target": "buildings_constructed",
+        "value": 10
+      },
+      "rewards": {
+        "experience": 400,
+        "title": "The Builder",
+        "resources": {
+          "wealth": 20
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "master_builder",
+      "name": "Wonder of the World",
+      "description": "Build all 7 types of structures at least once",
+      "icon": "Crown",
+      "category": "construction",
+      "rarity": "rare",
+      "requirements": {
+        "type": "unique",
+        "target": "building_types_built",
+        "value": 7
+      },
+      "rewards": {
+        "experience": 1200,
+        "title": "Master Builder",
+        "resources": {
+          "wealth": 100,
+          "influence": 50
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "diplomat",
+      "name": "Voice of Reason",
+      "description": "Send 50 messages in the discussion board",
+      "icon": "MessageCircle",
+      "category": "diplomatic",
+      "rarity": "common",
+      "requirements": {
+        "type": "count",
+        "target": "messages_posted",
+        "value": 50
+      },
+      "rewards": {
+        "experience": 250,
+        "title": "Diplomat",
+        "resources": {
+          "influence": 15
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "peacemaker",
+      "name": "Divine Mediator",
+      "description": "Successfully negotiate peace after declaring war",
+      "icon": "Heart",
+      "category": "diplomatic",
+      "rarity": "uncommon",
+      "requirements": {
+        "type": "condition",
+        "target": "peace_negotiations",
+        "value": 1
+      },
+      "rewards": {
+        "experience": 500,
+        "title": "Peacemaker",
+        "resources": {
+          "influence": 30,
+          "magic": 20
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "researcher",
+      "name": "Seeker of Knowledge",
+      "description": "Complete 20 research actions",
+      "icon": "BookOpen",
+      "category": "progression",
+      "rarity": "uncommon",
+      "requirements": {
+        "type": "count",
+        "target": "research_completed",
+        "value": 20
+      },
+      "rewards": {
+        "experience": 600,
+        "title": "Scholar",
+        "resources": {
+          "magic": 25
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "wealthy",
+      "name": "Golden Touch",
+      "description": "Accumulate 1000 wealth points",
+      "icon": "Coins",
+      "category": "progression",
+      "rarity": "uncommon",
+      "requirements": {
+        "type": "count",
+        "target": "total_wealth",
+        "value": 1000
+      },
+      "rewards": {
+        "experience": 400,
+        "title": "The Wealthy",
+        "resources": {
+          "wealth": 100
+        }
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "ancient_power",
+      "name": "Ancient Power",
+      "description": "Successfully explore the Sunken City ruins",
+      "icon": "Eye",
+      "category": "exploration",
+      "rarity": "epic",
+      "requirements": {
+        "type": "condition",
+        "target": "sunken_city_explored",
+        "value": 1
+      },
+      "rewards": {
+        "experience": 2000,
+        "title": "Ancient One",
+        "resources": {
+          "magic": 100,
+          "wealth": 50
+        },
+        "unlocks": ["forbidden_knowledge"]
+      },
+      "hidden": true,
+      "oneTime": true
+    },
+    {
+      "id": "dragon_slayer",
+      "name": "Dragon's Bane",
+      "description": "Conquer the Dragon's Spine mountain range",
+      "icon": "Sword",
+      "category": "military",
+      "rarity": "epic",
+      "requirements": {
+        "type": "condition",
+        "target": "dragon_spine_conquered",
+        "value": 1
+      },
+      "rewards": {
+        "experience": 1500,
+        "title": "Dragon Slayer",
+        "resources": {
+          "command": 50,
+          "magic": 30
+        }
+      },
+      "hidden": true,
+      "oneTime": true
+    },
+    {
+      "id": "legend",
+      "name": "Living Legend",
+      "description": "Reach level 50 and become a legendary deity",
+      "icon": "Star",
+      "category": "progression",
+      "rarity": "legendary",
+      "requirements": {
+        "type": "milestone",
+        "target": "player_level",
+        "value": 50
+      },
+      "rewards": {
+        "experience": 0,
+        "title": "Living Legend",
+        "resources": {
+          "wealth": 500,
+          "magic": 300,
+          "influence": 200,
+          "command": 100
+        },
+        "unlocks": ["legendary_actions"]
+      },
+      "hidden": false,
+      "oneTime": true
+    },
+    {
+      "id": "perfect_balance",
+      "name": "Perfect Harmony",
+      "description": "Create a race with exactly 0 points remaining",
+      "icon": "Scale",
+      "category": "special",
+      "rarity": "rare",
+      "requirements": {
+        "type": "condition",
+        "target": "perfect_race_balance",
+        "value": 1
+      },
+      "rewards": {
+        "experience": 800,
+        "title": "The Balanced",
+        "resources": {
+          "influence": 40
+        }
+      },
+      "hidden": true,
+      "oneTime": true
+    }
+  ]
+}

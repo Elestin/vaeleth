@@ -1,0 +1,207 @@
+{
+  "characteristics": [
+    {
+      "id": "sturdy",
+      "name": "Sturdy",
+      "cost": 20,
+      "type": "positive",
+      "description": "This race is exceptionally resilient, able to withstand more physical harm than average."
+    },
+    {
+      "id": "intelligent",
+      "name": "Intelligent",
+      "cost": 25,
+      "type": "positive",
+      "description": "Members of this race have superior cognitive abilities, allowing them to solve complex problems easily."
+    },
+    {
+      "id": "magicAffinity",
+      "name": "Magic Affinity",
+      "cost": 30,
+      "type": "positive",
+      "description": "This race has a natural connection to the arcane, making them formidable spellcasters."
+    },
+    {
+      "id": "swift",
+      "name": "Swift",
+      "cost": 15,
+      "type": "positive",
+      "description": "Unmatched in speed, this race can cover distances in record time or evade threats effectively."
+    },
+    {
+      "id": "agile",
+      "name": "Agile",
+      "cost": 15,
+      "type": "positive",
+      "description": "With heightened reflexes and balance, this race excels in tasks requiring dexterity."
+    },
+    {
+      "id": "nimbleFingers",
+      "name": "Nimble Fingers",
+      "cost": 10,
+      "type": "positive",
+      "description": "This race is particularly skilled at tasks requiring finesse, such as crafting or thievery."
+    },
+    {
+      "id": "amphibious",
+      "name": "Amphibious",
+      "cost": 20,
+      "type": "positive",
+      "description": "Capable of living both on land and water, this race can breathe underwater."
+    },
+    {
+      "id": "nightVision",
+      "name": "Night Vision",
+      "cost": 15,
+      "type": "positive",
+      "description": "The dark is no obstacle to this race, as they can see in low light conditions as if it were daytime."
+    },
+    {
+      "id": "flight",
+      "name": "Flight",
+      "cost": 35,
+      "type": "positive",
+      "description": "This race has the capability to fly, either through wings or other means."
+    },
+    {
+      "id": "longevity",
+      "name": "Longevity",
+      "cost": 25,
+      "type": "positive",
+      "description": "This race has a lifespan much longer than typical beings."
+    },
+    {
+      "id": "fireResistance",
+      "name": "Fire Resistance",
+      "cost": 20,
+      "type": "positive",
+      "description": "Heat and flames barely affect this race, making them immune to most fire-related threats."
+    },
+    {
+      "id": "coldResistance",
+      "name": "Cold Resistance",
+      "cost": 20,
+      "type": "positive",
+      "description": "Chilly environments are a comfort for this race, making them immune to frost and ice."
+    },
+    {
+      "id": "natureBond",
+      "name": "Nature Bond",
+      "cost": 25,
+      "type": "positive",
+      "description": "This race shares a special bond with nature, allowing them to command flora and fauna."
+    },
+    {
+      "id": "charm",
+      "name": "Charm",
+      "cost": 20,
+      "type": "positive",
+      "description": "Members of this race have a natural charisma, making them beloved and persuasive."
+    },
+    {
+      "id": "stealthy",
+      "name": "Stealthy",
+      "cost": 15,
+      "type": "positive",
+      "description": "This race excels in moving unnoticed, making them formidable spies or hunters."
+    },
+    {
+      "id": "telepathy",
+      "name": "Telepathy",
+      "cost": 30,
+      "type": "positive",
+      "description": "Members of this race can communicate mentally, reading thoughts or sending silent messages."
+    },
+    {
+      "id": "regeneration",
+      "name": "Regeneration",
+      "cost": 35,
+      "type": "positive",
+      "description": "Injuries heal rapidly for this race, as they can recover from wounds in a fraction of the normal time."
+    },
+    {
+      "id": "fertile",
+      "name": "Fertile",
+      "cost": 15,
+      "type": "positive",
+      "description": "This race reproduces at a faster rate, leading to quicker population growth."
+    },
+    {
+      "id": "inferiorStrength",
+      "name": "Inferior Strength",
+      "cost": -10,
+      "type": "negative",
+      "description": "Physical strength is not a forte for this race, making them less effective in brute force tasks."
+    },
+    {
+      "id": "brittleBones",
+      "name": "Brittle Bones",
+      "cost": -15,
+      "type": "negative",
+      "description": "This race is more prone to physical injuries due to their delicate bone structure."
+    },
+    {
+      "id": "magicIneptitude",
+      "name": "Magic Ineptitude",
+      "cost": -20,
+      "type": "negative",
+      "description": "Magic is a challenge for this race, making them less effective or incapable of casting spells."
+    },
+    {
+      "id": "shortLived",
+      "name": "Short-Lived",
+      "cost": -10,
+      "type": "negative",
+      "description": "Members of this race have shorter lifespans compared to others."
+    },
+    {
+      "id": "lightSensitive",
+      "name": "Light Sensitive",
+      "cost": -15,
+      "type": "negative",
+      "description": "Bright lights can be harmful or disorienting to this race, especially sunlight."
+    },
+    {
+      "id": "waterAllergy",
+      "name": "Water Allergy",
+      "cost": -15,
+      "type": "negative",
+      "description": "Water, whether it's rain or a splash, can be harmful or weakening to members of this race."
+    },
+    {
+      "id": "stuntedMagic",
+      "name": "Stunted Magic",
+      "cost": -15,
+      "type": "negative",
+      "description": "While not completely inept, magic is weaker when cast by members of this race."
+    },
+    {
+      "id": "gullible",
+      "name": "Gullible",
+      "cost": -10,
+      "type": "negative",
+      "description": "Easily deceived, this race tends to believe even the most obvious of lies."
+    },
+    {
+      "id": "fragile",
+      "name": "Fragile",
+      "cost": -20,
+      "type": "negative",
+      "description": "Lacking physical robustness, this race is easily harmed by physical threats."
+    },
+    {
+      "id": "vulnerableToMagic",
+      "name": "Vulnerable To Magic",
+      "cost": -25,
+      "type": "negative",
+      "description": "Magic affects this race more profoundly, making them susceptible to spells."
+    },
+    {
+      "id": "territorial",
+      "name": "Territorial",
+      "cost": -10,
+      "type": "negative",
+      "description": "This race is fiercely protective of their domain, often leading to disputes with neighbors."
+    }
+  ]
+}

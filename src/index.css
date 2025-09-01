@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1a1a2e;
+  color: #eaeaea;
+}
+
+/* Scrollbar styling */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom scrollbar for other elements */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(16, 21, 46, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(233, 69, 96, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(233, 69, 96, 0.8);
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid #f39c12;
+  outline-offset: 2px;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #f39c12;
+  outline-offset: 2px;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Utility classes */
+.fantasy-gradient {
+  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+}
+
+.fantasy-glow {
+  box-shadow: 0 0 20px rgba(243, 156, 18, 0.3);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --fantasy-dark: #000000;
+    --fantasy-blue: #003366;
+    --fantasy-purple: #4a0080;
+    --fantasy-red: #ff0000;
+    --fantasy-gold: #ffff00;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .tab-container {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  .tab {
+    flex: 1;
+    min-width: fit-content;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .container {
+    padding: 1rem;
+    width: 95%;
+    max-width: none;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem;
+  }
+  
+  /* Touch targets */
+  button, input, select {
+    min-height: 44px;
+  }
+  
+  /* Scrollable content */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Map adjustments */
+  .world-map {
+    height: 400px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-2xl { font-size: 1.25rem; }
+  .text-xl { font-size: 1.125rem; }
+  .text-lg { font-size: 1rem; }
+  
+  .p-8 { padding: 1rem; }
+  .p-6 { padding: 0.75rem; }
+  .p-4 { padding: 0.5rem; }
+  
+  .space-x-4 > * + * { margin-left: 0.5rem; }
+  .space-y-6 > * + * { margin-top: 1rem; }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .lg\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .lg\\:col-span-2 {
+    grid-column: span 1 !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: light) {
+  :root {
+    --fantasy-dark: #f8f9fa;
+    --fantasy-blue: #e3f2fd;
+    --fantasy-purple: #f3e5f5;
+    --fantasy-text: #212529;
+  }
+  
+  body {
+    background-color: var(--fantasy-dark);
+    color: var(--fantasy-text);
+  }
+}
